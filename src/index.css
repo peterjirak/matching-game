@@ -216,5 +216,6 @@ body {
   flex-direction: row;
   flex-grow: 1;
   margin-bottom: 25px;
+  margin-left: 25px;
   background-color: yellowgreen;
 }
