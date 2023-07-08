@@ -193,9 +193,12 @@ body {
 }
 
 .single-drop-down-row-spacer {
-  width: 35px;
-  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 16px;
+  height: 16px;
   border-radius: 100%;
-  margin-left: 25px;
+  margin-right: 25px;
   box-sizing: border-box;
 }
