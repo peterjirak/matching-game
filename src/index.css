@@ -79,10 +79,10 @@ body {
 
 .single-drop-down-button-open-close {
   display: flex;
-  width: 100px;
-  height: 100px;
+  width: 50px;
+  height: 50px;
   box-sizing: border-box;
-  border: 10px solid #AAA8A8;
+  border: 5px solid #AAA8A8;
   background-color: #FFFFFF;
   justify-content: center;
   align-items: center;
@@ -99,16 +99,16 @@ body {
 .single-drop-down-title-segment {
   display: flex;
   width: 450px;
-  height: 100px;
+  height: 50px;
   box-sizing: border-box;
   justify-content: center;
   align-items: center;
   background-color: #FFFFFF;
-  border-top: 10px solid #AAA8A8;
-  border-bottom: 10px solid #AAA8A8;
-  border-right: 10px solid #AAA8A8;
+  border-top: 5px solid #AAA8A8;
+  border-bottom: 5px solid #AAA8A8;
+  border-right: 5px solid #AAA8A8;
   font-family: 'Roboto', sans-serif;
-  font-size: 52px;
+  font-size: 24px;
   font-weight: 600;
 }
 
@@ -121,26 +121,26 @@ body {
 
 .single-drop-down-left-spacer {
   display: flex;
-  width: 90px;
-  height: 90px;
+  width: 45px;
+  height: 45px;
   box-sizing: border-box;
   cursor: default;
 }
 
 .single-drop-down-row-segment {
   display: flex;
-  width: 460px;
-  height: 90px;
+  width: 455px;
+  height: 45px;
   box-sizing: border-box;
   justify-content: space-between;
   align-items: center;
   flex-direction: row;
   background-color: #FFFFFF;
-  border-bottom: 10px solid #AAA8A8;
-  border-right: 10px solid #AAA8A8;
-  border-left: 10px solid #AAA8A8;
+  border-bottom: 5px solid #AAA8A8;
+  border-right: 5px solid #AAA8A8;
+  border-left: 5px solid #AAA8A8;
   font-family: 'Roboto', sans-serif;
-  font-size: 52px;
+  font-size: 24px;
   font-weight: 600;
   cursor: pointer;
   &:hover {
@@ -164,9 +164,9 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 35px;
-  height: 35px;
-  border: 5px solid #000000;
+  width: 16px;
+  height: 16px;
+  border: 3px solid #000000;
   border-radius: 100%;
   margin-left: 25px;
   box-sizing: border-box;
@@ -174,8 +174,8 @@ body {
 
 .single-drop-down-row-indicator-selected {
   display: flex;
-  width: 16px;
-  height: 16px;
+  width: 6px;
+  height: 6px;
   border-radius: 100%;
   background-color: #000000;
   box-sizing: border-box;
