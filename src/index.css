@@ -181,6 +181,13 @@ body {
   border-radius: 100%;
   margin-left: 25px;
   box-sizing: border-box;
+  font-family: inherit;
+  font-size: 100%;
+  padding: 0;
+  color: inherit;
+  background: none;
+  outline: none;
+  cursor: pointer;
 }
 
 .single-drop-down-row-indicator-selected {

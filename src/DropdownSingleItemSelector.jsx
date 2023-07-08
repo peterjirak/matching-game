@@ -27,8 +27,8 @@ const DropdownSingleItemSelector = (props) => {
                                         </div>
                                     </div>
                                     :
-                                    <div className='single-drop-down-row-indicator'>
-                                    </div>
+                                    <button className='single-drop-down-row-indicator' type='button'>
+                                    </button>
             const selectorElement =
                 <div className='single-drop-down-row-container'
                      onClick={item !== selected ?
