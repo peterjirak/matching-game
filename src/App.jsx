@@ -26,7 +26,7 @@ function App() {
                    </div>
                    <div className="above-game-right">
                    <DropdownSingleItemSelector
-                           items='"4 x 4", "6 x 6", "8 x 8", "10 x 10"'
+                           items='"4 x 4", "6 x 6", "8 x 8", "10 x 10", "12 x 12"'
                            selected={selectedDimension}
                            setSelected={setSelectedDimension}
                            isOpen={dimensionSelectorOpen}
