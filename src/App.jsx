@@ -3,9 +3,10 @@ import DropdownSingleItemSelector from './DropdownSingleItemSelector'
 import './App.css'
 
 function App() {
-    const [count, setCount] = useState(0);
     const [dimensionSelectorOpen, setDimensionSelectorOpen] = useState(false);
     const [selectedDimension, setSelectedDimension] = useState('4 x 4');
+    const [collectionSelectorOpen, setCollectionSelectorOpen] = useState(false);
+    const [collection, setCollection] = useState('Fairies');
 
     return (
         <>
@@ -13,18 +14,24 @@ function App() {
                 <div className="above-game">
                    <div className="above-game-left">
                        <DropdownSingleItemSelector
-                           items='"4 x 4", "6 x 6", "8 x 8", "10 x 10"'
-                           selected={selectedDimension}
-                           setSelected={setSelectedDimension}
-                           isOpen={dimensionSelectorOpen}
-                           setToOpen={setDimensionSelectorOpen}
+                           items='"Fairies", "Super Heroes", "Humanity in Space"'
+                           selected={collection}
+                           setSelected={setCollection}
+                           isOpen={collectionSelectorOpen}
+                           setToOpen={setCollectionSelectorOpen}
                        />
                    </div>
                    <div className="above-game-middle">
                        <p className="game-title">The Match Game</p>
                    </div>
                    <div className="above-game-right">
-                       &nbsp;
+                   <DropdownSingleItemSelector
+                           items='"4 x 4", "6 x 6", "8 x 8", "10 x 10"'
+                           selected={selectedDimension}
+                           setSelected={setSelectedDimension}
+                           isOpen={dimensionSelectorOpen}
+                           setToOpen={setDimensionSelectorOpen}
+                   />
                    </div>
                 </div>
                 <div className="game-board">
