@@ -60,6 +60,7 @@ body {
 .game-board {
   display: flex;
   flex-direction: column;
+  height: 100%;
 }
 
 .container-1 {
