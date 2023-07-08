@@ -1,12 +1,19 @@
-import { useState } from 'react'
-import DropdownSingleItemSelector from './DropdownSingleItemSelector'
-import './App.css'
+import { useState } from 'react';
+import DropdownSingleItemSelector from './DropdownSingleItemSelector';
+import Game from './Game';
+import './App.css';
 
 function App() {
     const [dimensionSelectorOpen, setDimensionSelectorOpen] = useState(false);
     const [selectedDimension, setSelectedDimension] = useState('4 x 4');
     const [collectionSelectorOpen, setCollectionSelectorOpen] = useState(false);
     const [collection, setCollection] = useState('Fairies');
+
+    const match = selectedDimension.match(/(\d+)/);
+    if (!match) {
+        throw TypeError(`Error: Defect encountered in App component. Size not detected from dimension selector.`);
+    }
+    const size = parseInt(match[1]);
 
     return (
         <>
@@ -34,12 +41,9 @@ function App() {
                    />
                    </div>
                 </div>
-                <div className="game-board">
-                    <div className="container-1">
-                    </div>
-                    <div className="container-2">
-                    </div>
-                </div>
+                <Game
+                    size={size}
+                />
             </div>
         </>
     )

@@ -210,3 +210,11 @@ body {
   margin-right: 25px;
   box-sizing: border-box;
 }
+
+.game-row {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  margin-bottom: 25px;
+  background-color: yellowgreen;
+}
