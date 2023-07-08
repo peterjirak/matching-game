@@ -57,7 +57,7 @@ const DropdownSingleItemSelector = (props) => {
     return (
         <div className='single-drop-down-control-container'>
             <div className='single-drop-down-first-row' onClick={toggleMenuBody}>
-                <button className='single-drop-down-button-open-close'>
+                <button className='single-drop-down-button-open-close' type='button'>
                     <img src={isOpen ? chevronUp : chevronDown} className='single-drop-down-button-open-close-img'/>
                 </button>
                 <div className='single-drop-down-title-segment'>
