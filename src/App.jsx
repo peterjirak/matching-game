@@ -43,7 +43,7 @@ function App() {
             <div id='above-game' className="above-game">
                 <div className="above-game-left">
                     <DropdownSingleItemSelector
-                        items='"Fairies", "Super Heroes", "Humanity in Space"'
+                        items='"Fairies", "Super Heroes", "Humanity in Space", "People with Dogs"'
                         selected={collection}
                         setSelected={setCollection}
                         isOpen={collectionSelectorOpen}
@@ -55,7 +55,7 @@ function App() {
                 </div>
                 <div className="above-game-right">
                 <DropdownSingleItemSelector
-                        items='"4 x 4", "6 x 6", "8 x 8", "10 x 10", "12 x 12"'
+                        items='"4 x 4", "6 x 6", "8 x 8", "10 x 10"'
                         selected={selectedDimension}
                         setSelected={setSelectedDimension}
                         isOpen={dimensionSelectorOpen}
