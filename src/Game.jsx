@@ -49,29 +49,6 @@ const Game = (props) => {
         rows.push(row)
     }
 
-    useLayoutEffect(
-        () => {
-            const gameBoard = document.getElementById('game-board');
-            const rowHeight = Math.floor( ( gameBoard.clientHeight - 0 ) / size ) - 25;
-            const gameBoardWidth = Math.floor( gameBoard.clientWidth );
-
-            for (let i = 0; i < size; i += 1) {
-                const gameRow = document.getElementById(`game-row-${i}`);
-                gameRow.style.height = `${rowHeight}px`;
-            }
-
-            const cellWidth = Math.floor( gameBoardWidth / size ) - 25;
-
-            const dimension = rowHeight < cellWidth ? rowHeight : cellWidth;
-
-            for (let i = 0; i < size * size; i += 1) {
-                const card = document.getElementById(`card-${i}`);
-                card.style.height = `${dimension}px`;
-                card.style.width = `${dimension}px`;
-            }
-        }
-    );
-
     return (
         <div id='game-board' className="game-board">
             {rows}
