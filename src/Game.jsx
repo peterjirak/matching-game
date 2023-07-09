@@ -2,14 +2,6 @@ import { useLayoutEffect } from 'react';
 import cardBack from './images/game-images/card-back.png';
 import { isPending } from '@reduxjs/toolkit';
 
-const rowStyles = {
-    '4': 'four-rows',
-    '6': 'six-rows',
-    '8': 'eight-rows',
-    '10': 'ten-rows',
-    '12': 'twelve-rows'
-}
-
 const GameCard = (props) => {
     const cardIndex = props.cardIndex;
     return (
@@ -27,12 +19,20 @@ const GameRow = (props) => {
         let cardIndex = rowIndex * size + i;
         let card = <GameCard cardIndex={cardIndex}/>
         cards.push(card);
+        if (i < size - 1) {
+            let cardSpacer = <div className='card-spacer'></div>
+            cards.push(cardSpacer);
+        }
     }
 
     return (
-        <div id={`game-row-${rowIndex}`} className={`game-row ${rowStyles[size]}`}>
-            {cards}
-        </div>
+        <>
+            <div id={`game-row-${rowIndex}`} className='game-row'>
+                {cards}
+            </div>
+            <div className='row-spacer'>
+            </div>
+        </>
     );
 }
 
@@ -51,10 +51,17 @@ const Game = (props) => {
 
     useLayoutEffect(
         () => {
-            const gameRowIndex0 = document.getElementById('game-row-0');
-            const rowWidth = gameRowIndex0.offsetWidth;
-            const rowHeight = Math.floor( gameRowIndex0.offsetHeight );
-            const cellWidth = Math.floor( rowWidth / size );
+            const gameBoard = document.getElementById('game-board');
+            const rowHeight = Math.floor( ( gameBoard.clientHeight - 0 ) / size ) - 25;
+            const gameBoardWidth = Math.floor( gameBoard.clientWidth );
+
+            for (let i = 0; i < size; i += 1) {
+                const gameRow = document.getElementById(`game-row-${i}`);
+                gameRow.style.height = `${rowHeight}px`;
+            }
+
+            const cellWidth = Math.floor( gameBoardWidth / size ) - 25;
+
             const dimension = rowHeight < cellWidth ? rowHeight : cellWidth;
 
             for (let i = 0; i < size * size; i += 1) {
