@@ -217,16 +217,36 @@ body {
   justify-content: center;
   align-items: center;
   flex-grow: 1;
-  margin-bottom: 25px;
-  margin-left: 25px;
+  box-sizing: border-box;
   background-color: yellowgreen;
+  margin-bottom: 25px;
+}
+
+.four-rows {
+  height: 25%;
+}
+
+.six-rows {
+  height: 16%;
+}
+
+.eight-rows {
+  height: 12%;
+}
+
+.ten-rows {
+  height: 10%;
+}
+
+.twelve-rows {
+  height: 8%;
 }
 
 .game-card {
   display: flex;
-  margin-left: 25px;
   object-fit: contain;
-  height: 350px;
-  width: 350px;
+  height: 1px;
+  width: 1px;
+  box-sizing: border-box;
   background-color: red;
 }
