@@ -214,8 +214,19 @@ body {
 .game-row {
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
   flex-grow: 1;
   margin-bottom: 25px;
   margin-left: 25px;
   background-color: yellowgreen;
+}
+
+.game-card {
+  display: flex;
+  margin-left: 25px;
+  object-fit: contain;
+  height: 350px;
+  width: 350px;
+  background-color: red;
 }
