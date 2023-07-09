@@ -49,4 +49,4 @@ const dynamicallySizeGameElements = () => {
     }
 }
 
-window.dynamicallySizeGameElements = dynamicallySizeGameElements;
+export { dynamicallySizeGameElements };
