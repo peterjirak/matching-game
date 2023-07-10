@@ -3,16 +3,19 @@ import cardBack from './images/game-images/card-back.png';
 import { isPending } from '@reduxjs/toolkit';
 
 const GameCard = (props) => {
+    const size = props.size;
     const cardIndex = props.cardIndex;
     const cardCollection = props.cardCollection;
-    const faceUp = props.faceUp || false;
     const setUpCards = props.setUpCards;
     const imageIdsForCards = props.imageIdsForCards;
-    const setCardFaceUp = props.setCardFaceUp;
-    const setCardFaceDown = props.setCardFaceDown;
-    const setCardsToMatched = props.setCardsToMatched;
+    const cardsFaceUp = props.cardsFaceUp;
+    const setCardsFaceUp = props.setCardsFaceUp;
+    const matchedCards = props.matchedCards;
+    const setMatchedCards = props.setMatchedCards;
     const activeCards = props.activeCards;
     const setActiveCards = props.setActiveCards;
+
+    const faceUp = cardsFaceUp ? cardsFaceUp[cardIndex] : false;
     const imageId = imageIdsForCards ? imageIdsForCards[cardIndex] : null;
 
     let collectionId = cardCollection;
@@ -24,42 +27,80 @@ const GameCard = (props) => {
         if (!faceUp) {
             if (!imageId) {
                 setUpCards();
+                let newActiveCards = activeCards ? [...activeCards, cardIndex] : [cardIndex];
                 setActiveCards([...activeCards, cardIndex]);
-                setCardFaceUp(cardIndex);
+                let newCardsFaceUp = null;
+                if (!cardsFaceUp) {
+                    newCardsFaceUp = new Array(size * size).fill(null);
+                } else {
+                    newCardsFaceUp = [...cardsFaceUp];
+                }
+                newCardsFaceUp[cardIndex] = true;
+                setActiveCards(newActiveCards);
+                setCardsFaceUp(newCardsFaceUp);
             } else {
-                let matchesIndex = null;
-                if (activeCards.length > 0) {
-                    for (let i = 0; i < activeCards.length; i += 1) {
-                        let activeCardIndex = activeCards[i];
-                        if (cardIndex === activeCardIndex) {
-                            continue;
-                        } else {
-                            let activeCardImageId = imageIdsForCards[activeCardIndex];
-                            if (imageId === activeCardImageId) {
-                                matchesIndex = activeCardIndex;
-                                setCardsToMatched(cardIndex, activeCardIndex, imageId);
-                                let newActiveCardSet = [...activeCards];
-                                newActiveCardSet.splice(i, 1);
-                                setActiveCards([...newActiveCardSet]);
-                                break;
-                            }
-                        }
+                if (!activeCards || activeCards.length < 1) {
+                    let newCardsFaceUp = null;
+                    if (!cardsFaceUp) {
+                        newCardsFaceUp = new Array(size * size).fill(null);
+                    } else {
+                        newCardsFaceUp = [...cardsFaceUp];
                     }
-                    if (!matchesIndex) {
-                        if (!activeCards.includes(cardIndex)) {
-                            if (activeCards.length < 2) {
-                                let newActiveCardSet = [...activeCards, cardIndex];
-                                setActiveCards([...newActiveCardSet]);
-                            } else {
-                                for (let activeCardIndex of activeCards) {
-                                    setCardFaceDown(activeCardIndex);
-                                }
-                                setActiveCards([cardIndex]);
-                            }
+                    newCardsFaceUp[cardIndex] = true;
+                    setActiveCards( [ cardIndex ] );
+                    setCardsFaceUp(newCardsFaceUp);
+                } else if (activeCards.length > 1) {
+                    let newCardsFaceUp = null;
+                    if (!cardsFaceUp) {
+                        newCardsFaceUp = new Array(size * size).fill(null);
+                    } else {
+                        newCardsFaceUp = [...cardsFaceUp];
+                    }
+                    for (let activeCardIndex of activeCards) {
+                        newCardsFaceUp[activeCardIndex] = false;
+                    }
+                    newCardsFaceUp[cardIndex] = true;
+                    let newActiveCards = [cardIndex];
+                    setActiveCards(newActiveCards);
+                    setCardsFaceUp(newCardsFaceUp);
+                } else {
+                    let activeCardIndex = activeCards[0];
+                    let activeCardImageId = imageIdsForCards[activeCardIndex];
+                    if (activeCardImageId === imageId) {
+                        let newActiveCards = [];
+                        let newCardsFaceUp = null;
+                        if (!cardsFaceUp) {
+                            newCardsFaceUp = new Array(size * size).fill(null);
+                        } else {
+                            newCardsFaceUp = [...cardsFaceUp];
                         }
+                        newCardsFaceUp[activeCardIndex] = true;
+                        newCardsFaceUp[cardIndex] = true;
+                        let newMatchedCards = null;
+                        if (matchedCards) {
+                            newMatchedCards = [...matchedCards];
+                        } else {
+                            newMatchedCards = new Array(size * size).fill(null);
+                        }
+                        newMatchedCards[activeCardIndex] = imageId;
+                        newMatchedCards[cardIndex] = imageId;
+                        setActiveCards(newActiveCards);
+                        setCardsFaceUp(newCardsFaceUp);
+                        setMatchedCards(newMatchedCards);
+                    } else {
+                        let newActiveCards = [activeCardIndex, cardIndex];
+                        let newCardsFaceUp = null;
+                        if (!cardsFaceUp) {
+                            newCardsFaceUp = new Array(size * size).fill(null);
+                        } else {
+                            newCardsFaceUp = [...cardsFaceUp];
+                        }
+                        newCardsFaceUp[activeCardIndex] = true;
+                        newCardsFaceUp[cardIndex] = true;
+                        setActiveCards(newActiveCards);
+                        setCardsFaceUp(newCardsFaceUp);
                     }
                 }
-                setCardFaceUp(cardIndex);
             }
         }
     }
@@ -84,9 +125,9 @@ const GameRow = (props) => {
     const setUpCards = props.setUpCards;
     const imageIdsForCards = props.imageIdsForCards;
     const cardsFaceUp = props.cardsFaceUp;
-    const setCardFaceUp = props.setCardFaceUp;
-    const setCardFaceDown = props.setCardFaceDown;
-    const setCardsToMatched = props.setCardsToMatched;
+    const setCardsFaceUp = props.setCardsFaceUp;
+    const matchedCards = props.matchedCards;
+    const setMatchedCards = props.setMatchedCards;
     const activeCards = props.activeCards;
     const setActiveCards = props.setActiveCards;
 
@@ -96,14 +137,15 @@ const GameRow = (props) => {
         let cardIndex = rowIndex * size + i;
         let faceUp = cardsFaceUp ? cardsFaceUp[cardIndex] : false;
         let card = <GameCard
+                             size={size}
                              cardIndex={cardIndex}
                              cardCollection={cardCollection}
-                             imageIdsForCards={imageIdsForCards}
-                             faceUp={faceUp}
                              setUpCards={setUpCards}
-                             setCardFaceUp={setCardFaceUp}
-                             setCardFaceDown={setCardFaceDown}
-                             setCardsToMatched={setCardsToMatched}
+                             imageIdsForCards={imageIdsForCards}
+                             cardsFaceUp={cardsFaceUp}
+                             setCardsFaceUp={setCardsFaceUp}
+                             matchedCards={matchedCards}
+                             setMatchedCards={setMatchedCards}
                              activeCards={activeCards}
                              setActiveCards={setActiveCards}
                    />
@@ -131,9 +173,9 @@ const Game = (props) => {
     const setUpCards = props.setUpCards;
     const imageIdsForCards = props.imageIdsForCards;
     const cardsFaceUp = props.cardsFaceUp;
-    const setCardFaceUp = props.setCardFaceUp;
-    const setCardFaceDown = props.setCardFaceDown;
-    const setCardsToMatched = props.setCardsToMatched;
+    const setCardsFaceUp = props.setCardsFaceUp;
+    const matchedCards = props.matchedCards;
+    const setMatchedCards = props.setMatchedCards;
     const activeCards = props.activeCards;
     const setActiveCards = props.setActiveCards;
 
@@ -147,9 +189,9 @@ const Game = (props) => {
                       setUpCards={setUpCards}
                       imageIdsForCards={imageIdsForCards}
                       cardsFaceUp={cardsFaceUp}
-                      setCardFaceUp={setCardFaceUp}
-                      setCardFaceDown={setCardFaceDown}
-                      setCardsToMatched={setCardsToMatched}
+                      setCardsFaceUp={setCardsFaceUp}
+                      matchedCards={matchedCards}
+                      setMatchedCards={setMatchedCards}
                       activeCards={activeCards}
                       setActiveCards={setActiveCards}
                   />

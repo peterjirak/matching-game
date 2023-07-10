@@ -114,40 +114,6 @@ function App() {
         }
     }
 
-    const setCardFaceUp = (cardIndex) => {
-        let faceUpCards = null;
-        if (!cardsFaceUp) {
-            faceUpCards = new Array(size * size).fill(false);
-        } else {
-            faceUpCards = [...cardsFaceUp];
-        }
-        faceUpCards[cardIndex] = true;
-        setCardsFaceUp(faceUpCards);
-    };
-
-    const setCardFaceDown = (cardIndex) => {
-        let faceUpCards = null;
-        if (!cardsFaceUp) {
-            faceUpCards = new Array(size * size).fill(false);
-        } else {
-            faceUpCards = [...cardsFaceUp];
-        }
-        faceUpCards[cardIndex] = false;
-        setCardsFaceUp(faceUpCards);
-    };
-
-    const setCardsToMatched = (card1Index, card2Index, imageId) => {
-        let cardsMatched = null;
-        if (!matchedCards) {
-            cardsMatched = new Array(size * size).fill(null);
-        } else {
-            cardsMatched = [...matchedCards];
-        }
-        cardsMatched[card1Index] = imageId;
-        cardsMatched[card2Index] = imageId;
-        setMatchedCards(cardsMatched);
-    }
-
     return (
         <div id="app-container" className="app-container">
             <div id='above-game' className="above-game">
@@ -179,9 +145,9 @@ function App() {
                 setUpCards={setUpCards}
                 imageIdsForCards={imageIdsForCards}
                 cardsFaceUp={cardsFaceUp}
-                setCardFaceUp={setCardFaceUp}
-                setCardFaceDown={setCardFaceDown}
-                setCardsToMatched={setCardsToMatched}
+                setCardsFaceUp={setCardsFaceUp}
+                matchedCards={matchedCards}
+                setMatchedCards={setMatchedCards}
                 activeCards={activeCards}
                 setActiveCards={setActiveCards}
             />
