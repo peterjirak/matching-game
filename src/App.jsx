@@ -24,6 +24,8 @@ function App() {
     const [collection, setCollection] = useState('Fairies');
     const [imageIdsForCards, setImageIdsForCards] = useState(null);
     const [cardsFaceUp, setCardsFaceUp] = useState(null);
+    const [matchedCards, setMatchedCards] = useState(null);
+    const [activeCards, setActiveCards] = useState([]);
 
     const match = selectedDimension.match(/(\d+)/);
     if (!match) {
@@ -105,6 +107,10 @@ function App() {
 
             let faceUpCards = new Array(size * size).fill(false);
             setCardsFaceUp(faceUpCards);
+            if (!matchedCards) {
+                let cardsMatched = new Array(size * size).fill(null);
+                setMatchedCards(cardsMatched);
+            }
         }
     }
 
@@ -118,6 +124,29 @@ function App() {
         faceUpCards[cardIndex] = true;
         setCardsFaceUp(faceUpCards);
     };
+
+    const setCardFaceDown = (cardIndex) => {
+        let faceUpCards = null;
+        if (!cardsFaceUp) {
+            faceUpCards = new Array(size * size).fill(false);
+        } else {
+            faceUpCards = [...cardsFaceUp];
+        }
+        faceUpCards[cardIndex] = false;
+        setCardsFaceUp(faceUpCards);
+    };
+
+    const setCardsToMatched = (card1Index, card2Index, imageId) => {
+        let cardsMatched = null;
+        if (!matchedCards) {
+            cardsMatched = new Array(size * size).fill(null);
+        } else {
+            cardsMatched = [...matchedCards];
+        }
+        cardsMatched[card1Index] = imageId;
+        cardsMatched[card2Index] = imageId;
+        setMatchedCards(cardsMatched);
+    }
 
     return (
         <div id="app-container" className="app-container">
@@ -151,6 +180,10 @@ function App() {
                 imageIdsForCards={imageIdsForCards}
                 cardsFaceUp={cardsFaceUp}
                 setCardFaceUp={setCardFaceUp}
+                setCardFaceDown={setCardFaceDown}
+                setCardsToMatched={setCardsToMatched}
+                activeCards={activeCards}
+                setActiveCards={setActiveCards}
             />
         </div>
     )
