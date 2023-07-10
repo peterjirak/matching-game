@@ -22,6 +22,8 @@ function App() {
     const [selectedDimension, setSelectedDimension] = useState('4 x 4');
     const [collectionSelectorOpen, setCollectionSelectorOpen] = useState(false);
     const [collection, setCollection] = useState('Fairies');
+    const [imageIdsForCards, setImageIdsForCards] = useState(null);
+    const [cardsFaceUp, setCardsFaceUp] = useState(null);
 
     const match = selectedDimension.match(/(\d+)/);
     if (!match) {
@@ -68,8 +70,54 @@ function App() {
     );
 
     const setUpCards = () => {
+        if (!imageIdsForCards) {
+            let imageIds = Array.from({length: cardCounts[collection]}, (_, i) => i + 1);
+            let cardIds = Array.from({length: size * size}, (_, i) => i);
+            const setupImageIdsForCards = new Array(size * size).fill(null);
+            for (let i = 0; i < size * size / 2; i += 1) {
+                let card1 = null;
+                let card2 = null;
+                if (cardIds.length === 2) {
+                    card1 = cardIds[0];
+                    card2 = cardIds[1];
+                    cardIds = [];
+                } else {
+                    let cardIdIndex1 = Math.floor(Math.random() * cardIds.length);
+                    card1 = cardIds[cardIdIndex1];
+                    cardIds.splice(cardIdIndex1, 1);
+                    let cardIdIndex2 = Math.floor(Math.random() * cardIds.length);
+                    card2 = cardIds[cardIdIndex2];
+                    cardIds.splice(cardIdIndex2, 1);
+                }
+                let imageId = null;
+                if (imageIds.length === 1) {
+                    imageId = imageIds[0];
+                    imageIds = [];
+                } else {
+                    let imageIdIndex = Math.floor(Math.random() * imageIds.length);
+                    imageId = imageIds[imageIdIndex];
+                    imageIds.splice(imageIdIndex, 1);
+                }
+                setupImageIdsForCards[card1] = imageId;
+                setupImageIdsForCards[card2] = imageId;
+            }
+            setImageIdsForCards(setupImageIdsForCards);
 
+            let faceUpCards = new Array(size * size).fill(false);
+            setCardsFaceUp(faceUpCards);
+        }
     }
+
+    const setCardFaceUp = (cardIndex) => {
+        let faceUpCards = null;
+        if (!cardsFaceUp) {
+            faceUpCards = new Array(size * size).fill(false);
+        } else {
+            faceUpCards = [...cardsFaceUp];
+        }
+        faceUpCards[cardIndex] = true;
+        setCardsFaceUp(faceUpCards);
+    };
 
     return (
         <div id="app-container" className="app-container">
@@ -99,6 +147,10 @@ function App() {
             <Game
                 size={size}
                 cardCollection={collection}
+                setUpCards={setUpCards}
+                imageIdsForCards={imageIdsForCards}
+                cardsFaceUp={cardsFaceUp}
+                setCardFaceUp={setCardFaceUp}
             />
         </div>
     )
