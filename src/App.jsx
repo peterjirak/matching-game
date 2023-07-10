@@ -3,6 +3,20 @@ import DropdownSingleItemSelector from './DropdownSingleItemSelector';
 import Game from './Game';
 import './App.css';
 
+const cardCounts = {
+    'Fairies': 77,
+    'Humanity in Space': 61,
+    'People with Dogs': 63,
+    'Super Heroes': 62
+};
+
+const collectionDimensions = {
+    'Fairies': '"4 x 4", "6 x 6", "8 x 8", "10 x 10", "12 x 12"',
+    'Humanity in Space': '"4 x 4", "6 x 6", "8 x 8", "10 x 10"',
+    'People with Dogs': '"4 x 4", "6 x 6", "8 x 8", "10 x 10"',
+    'Super Heroes': '"4 x 4", "6 x 6", "8 x 8", "10 x 10"'
+}
+
 function App() {
     const [dimensionSelectorOpen, setDimensionSelectorOpen] = useState(false);
     const [selectedDimension, setSelectedDimension] = useState('4 x 4');
@@ -38,6 +52,25 @@ function App() {
         }
     );
 
+    useLayoutEffect(
+        () => {
+            const dimensions = collectionDimensions[collection];
+            if (!dimensions.includes(selectedDimension)) {
+                let dimensionsStr = dimensions;
+                dimensionsStr = dimensionsStr.trim();
+                dimensionsStr = dimensionsStr.replace(/^\s*"\s*/, '');
+                dimensionsStr = dimensionsStr.replace(/\s*"\s*$/, '');
+                const dimensionsForCollection = dimensionsStr.split(/\s*"\s*,\s*"\s*/);
+                const useDimension = dimensionsForCollection[ -1 + dimensionsForCollection.length];
+                setSelectedDimension(useDimension);
+            }
+        }
+    );
+
+    const setUpCards = () => {
+
+    }
+
     return (
         <div id="app-container" className="app-container">
             <div id='above-game' className="above-game">
@@ -55,7 +88,7 @@ function App() {
                 </div>
                 <div className="above-game-right">
                 <DropdownSingleItemSelector
-                        items='"4 x 4", "6 x 6", "8 x 8", "10 x 10"'
+                        items={collectionDimensions[collection]}
                         selected={selectedDimension}
                         setSelected={setSelectedDimension}
                         isOpen={dimensionSelectorOpen}
@@ -65,6 +98,7 @@ function App() {
             </div>
             <Game
                 size={size}
+                cardCollection={collection}
             />
         </div>
     )
