@@ -4,10 +4,10 @@ import Game from './Game';
 import './App.css';
 
 const cardCounts = {
-    'Fairies': 77,
+    'Fairies': 80,
     'Humanity in Space': 61,
     'People with Dogs': 63,
-    'Super Heroes': 62
+    'Super Heroes': 65
 };
 
 const collectionDimensions = {
