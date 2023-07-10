@@ -14,6 +14,7 @@ const GameCard = (props) => {
     const setMatchedCards = props.setMatchedCards;
     const activeCards = props.activeCards;
     const setActiveCards = props.setActiveCards;
+    const setIdOfLargeImageToView = props.setIdOfLargeImageToView;
 
     const faceUp = cardsFaceUp ? cardsFaceUp[cardIndex] : false;
     const imageId = imageIdsForCards ? imageIdsForCards[cardIndex] : null;
@@ -102,6 +103,10 @@ const GameCard = (props) => {
                     }
                 }
             }
+        } else {
+            if (imageId) {
+                setIdOfLargeImageToView(imageId);
+            }
         }
     }
 
@@ -130,6 +135,7 @@ const GameRow = (props) => {
     const setMatchedCards = props.setMatchedCards;
     const activeCards = props.activeCards;
     const setActiveCards = props.setActiveCards;
+    const setIdOfLargeImageToView = props.setIdOfLargeImageToView;
 
     const cards = [];
 
@@ -148,6 +154,7 @@ const GameRow = (props) => {
                              setMatchedCards={setMatchedCards}
                              activeCards={activeCards}
                              setActiveCards={setActiveCards}
+                             setIdOfLargeImageToView={setIdOfLargeImageToView}
                    />
         cards.push(card);
         if (i < size - 1) {
@@ -178,6 +185,7 @@ const Game = (props) => {
     const setMatchedCards = props.setMatchedCards;
     const activeCards = props.activeCards;
     const setActiveCards = props.setActiveCards;
+    const setIdOfLargeImageToView = props.setIdOfLargeImageToView;
 
     const rows = [];
 
@@ -194,6 +202,7 @@ const Game = (props) => {
                       setMatchedCards={setMatchedCards}
                       activeCards={activeCards}
                       setActiveCards={setActiveCards}
+                      setIdOfLargeImageToView={setIdOfLargeImageToView}
                   />
         rows.push(row)
     }

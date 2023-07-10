@@ -17,7 +17,34 @@ const collectionDimensions = {
     'Super Heroes': '"4 x 4", "6 x 6", "8 x 8", "10 x 10"'
 }
 
-function App() {
+const LargeImageViewer = (props) => {
+    const imageId = props.imageId;
+    const collection = props.collection;
+    const setIdOfLargeImageToView = props.setIdOfLargeImageToView;
+
+    if (!imageId) {
+        return null;
+    }
+
+    let collectionId = collection;
+    collectionId = collectionId.trim();
+    collectionId = collectionId.toLowerCase();
+    collectionId = collectionId.replace(/ /g, '-');
+
+    const src = `/src/images/match-collections/${collectionId}/${collectionId}-id-${imageId}.png`;
+
+    const onClick = () => {
+        setIdOfLargeImageToView(null);
+    }
+
+    return (
+        <div className='large-image-viewer-container'>
+            <img className='large-image' src={src} onClick={onClick}></img>
+        </div>
+    );
+}
+
+const App = () => {
     const [dimensionSelectorOpen, setDimensionSelectorOpen] = useState(false);
     const [selectedDimension, setSelectedDimension] = useState('4 x 4');
     const [collectionSelectorOpen, setCollectionSelectorOpen] = useState(false);
@@ -26,6 +53,7 @@ function App() {
     const [cardsFaceUp, setCardsFaceUp] = useState(null);
     const [matchedCards, setMatchedCards] = useState(null);
     const [activeCards, setActiveCards] = useState([]);
+    const [viewLargeImageId, setIdOfLargeImageToView] = useState(null);
 
     const match = selectedDimension.match(/(\d+)/);
     if (!match) {
@@ -116,6 +144,11 @@ function App() {
 
     return (
         <div id="app-container" className="app-container">
+            <LargeImageViewer
+                imageId={viewLargeImageId}
+                collection={collection}
+                setIdOfLargeImageToView={setIdOfLargeImageToView}
+            />
             <div id='above-game' className="above-game">
                 <div className="above-game-left">
                     <DropdownSingleItemSelector
@@ -150,6 +183,7 @@ function App() {
                 setMatchedCards={setMatchedCards}
                 activeCards={activeCards}
                 setActiveCards={setActiveCards}
+                setIdOfLargeImageToView={setIdOfLargeImageToView}
             />
         </div>
     )
