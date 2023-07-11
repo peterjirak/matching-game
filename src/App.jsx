@@ -6,6 +6,7 @@ import './App.css';
 const cardCounts = {
     'Fairies': 80,
     'Humanity in Space': 61,
+    'People with Cats': 98,
     'People with Dogs': 63,
     'Super Heroes': 65
 };
@@ -13,6 +14,7 @@ const cardCounts = {
 const collectionDimensions = {
     'Fairies': '"4 x 4", "6 x 6", "8 x 8", "10 x 10", "12 x 12"',
     'Humanity in Space': '"4 x 4", "6 x 6", "8 x 8", "10 x 10"',
+    'People with Cats': '"4 x 4", "6 x 6", "8 x 8", "10 x 10", "12 x 12"',
     'People with Dogs': '"4 x 4", "6 x 6", "8 x 8", "10 x 10"',
     'Super Heroes': '"4 x 4", "6 x 6", "8 x 8", "10 x 10"'
 }
@@ -152,7 +154,7 @@ const App = () => {
             <div id='above-game' className="above-game">
                 <div className="above-game-left">
                     <DropdownSingleItemSelector
-                        items='"Fairies", "Super Heroes", "Humanity in Space", "People with Dogs"'
+                        items='"Fairies", "Super Heroes", "Humanity in Space", "People with Cats", "People with Dogs"'
                         selected={collection}
                         setSelected={setCollection}
                         isOpen={collectionSelectorOpen}
