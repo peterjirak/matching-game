@@ -1,5 +1,5 @@
 'use strict';
-import { dynamicallySizeGameElements } from './dynamicResizeUtilities';
+import { dynamicallySizeGameElements, dynamicallySizeLargeImageViewer } from './dynamicResizeUtilities';
 
 const registeredEvents = {};
 
@@ -9,6 +9,7 @@ const registerEventListeners = () => {
             'resize',
             (event) => {
                 dynamicallySizeGameElements();
+                dynamicallySizeLargeImageViewer();
             }
         );
         registeredEvents.resize = true;
