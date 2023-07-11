@@ -17,6 +17,10 @@ const GameCard = (props) => {
     const setIdOfLargeImageToView = props.setIdOfLargeImageToView;
     const gameState = props.gameState;
     const setGameState = props.setGameState;
+    const cardFlipCounts = props.cardFlipCounts;
+    const setCardFlipCounts = props.setCardFlipCounts;
+    const gameScore = props.gameScore;
+    const setGameScore = props.setGameScore;
 
     const faceUp = cardsFaceUp ? cardsFaceUp[cardIndex] : false;
     const imageId = imageIdsForCards ? imageIdsForCards[cardIndex] : null;
@@ -39,8 +43,16 @@ const GameCard = (props) => {
                     newCardsFaceUp = [...cardsFaceUp];
                 }
                 newCardsFaceUp[cardIndex] = true;
+                let newCardFlipCounts = null;
+                if (!cardFlipCounts) {
+                    newCardFlipCounts = new Array(size * size).fill(0);
+                } else {
+                    newCardFlipCounts = [...cardFlipCounts];
+                }
+                newCardFlipCounts[cardIndex] += 1;
                 setActiveCards(newActiveCards);
                 setCardsFaceUp(newCardsFaceUp);
+                setCardFlipCounts(newCardFlipCounts);
                 setGameState('In-Progress');
             } else {
                 if (!activeCards || activeCards.length < 1) {
@@ -51,8 +63,16 @@ const GameCard = (props) => {
                         newCardsFaceUp = [...cardsFaceUp];
                     }
                     newCardsFaceUp[cardIndex] = true;
+                    let newCardFlipCounts = null;
+                    if (!cardFlipCounts) {
+                        newCardFlipCounts = new Array(size * size).fill(0);
+                    } else {
+                        newCardFlipCounts = [...cardFlipCounts];
+                    }
+                    newCardFlipCounts[cardIndex] += 1;
                     setActiveCards( [ cardIndex ] );
                     setCardsFaceUp(newCardsFaceUp);
+                    setCardFlipCounts(newCardFlipCounts);
                 } else if (activeCards.length > 1) {
                     let newCardsFaceUp = null;
                     if (!cardsFaceUp) {
@@ -65,8 +85,16 @@ const GameCard = (props) => {
                     }
                     newCardsFaceUp[cardIndex] = true;
                     let newActiveCards = [cardIndex];
+                    let newCardFlipCounts = null;
+                    if (!cardFlipCounts) {
+                        newCardFlipCounts = new Array(size * size).fill(0);
+                    } else {
+                        newCardFlipCounts = [...cardFlipCounts];
+                    }
+                    newCardFlipCounts[cardIndex] += 1;
                     setActiveCards(newActiveCards);
                     setCardsFaceUp(newCardsFaceUp);
+                    setCardFlipCounts(newCardFlipCounts);
                 } else {
                     let activeCardIndex = activeCards[0];
                     let activeCardImageId = imageIdsForCards[activeCardIndex];
@@ -88,9 +116,38 @@ const GameCard = (props) => {
                         }
                         newMatchedCards[activeCardIndex] = imageId;
                         newMatchedCards[cardIndex] = imageId;
+                        let newCardFlipCounts = null;
+                        if (!cardFlipCounts) {
+                            newCardFlipCounts = new Array(size * size).fill(0);
+                        } else {
+                            newCardFlipCounts = [...cardFlipCounts];
+                        }
+                        newCardFlipCounts[cardIndex] += 1;
+                        const activeCardFlipCounts = newCardFlipCounts[activeCardIndex];
+                        const thisCardFlipCounts = newCardFlipCounts[cardIndex];
+                        const scoreMultiplier = size <= 4  ? 1 :
+                                                size <= 6  ? 2 :
+                                                size <= 8  ? 3 :
+                                                size <= 10 ? 4 :
+                                                             5;
+                        let matchPoints = ( 20 * scoreMultiplier ) - activeCardFlipCounts - thisCardFlipCounts + 3;
+                        matchPoints = matchPoints > ( 20 * scoreMultiplier ) ? ( 20 * scoreMultiplier ) : matchPoints < 1 ? 1 : matchPoints;
+                        const newScore = ( gameScore || 0 ) + matchPoints;
+                        let gameCompleted = true;
+                        for (let cardImageId of newMatchedCards) {
+                            if (!cardImageId) {
+                                gameCompleted = false;
+                                break;
+                            }
+                        }
                         setActiveCards(newActiveCards);
                         setCardsFaceUp(newCardsFaceUp);
                         setMatchedCards(newMatchedCards);
+                        setCardFlipCounts(newCardFlipCounts);
+                        setGameScore(newScore);
+                        if (gameCompleted) {
+                            setGameState('Completed');
+                        }
                     } else {
                         let newActiveCards = [activeCardIndex, cardIndex];
                         let newCardsFaceUp = null;
@@ -101,8 +158,16 @@ const GameCard = (props) => {
                         }
                         newCardsFaceUp[activeCardIndex] = true;
                         newCardsFaceUp[cardIndex] = true;
+                        let newCardFlipCounts = null;
+                        if (!cardFlipCounts) {
+                            newCardFlipCounts = new Array(size * size).fill(0);
+                        } else {
+                            newCardFlipCounts = [...cardFlipCounts];
+                        }
+                        newCardFlipCounts[cardIndex] += 1;
                         setActiveCards(newActiveCards);
                         setCardsFaceUp(newCardsFaceUp);
+                        setCardFlipCounts(newCardFlipCounts);
                     }
                 }
             }
@@ -141,6 +206,10 @@ const GameRow = (props) => {
     const setIdOfLargeImageToView = props.setIdOfLargeImageToView;
     const gameState = props.gameState;
     const setGameState = props.setGameState;
+    const cardFlipCounts = props.cardFlipCounts;
+    const setCardFlipCounts = props.setCardFlipCounts;
+    const gameScore = props.gameScore;
+    const setGameScore = props.setGameScore;
 
     const cards = [];
 
@@ -157,6 +226,10 @@ const GameRow = (props) => {
                              setCardsFaceUp={setCardsFaceUp}
                              matchedCards={matchedCards}
                              setMatchedCards={setMatchedCards}
+                             cardFlipCounts={cardFlipCounts}
+                             setCardFlipCounts={setCardFlipCounts}
+                             gameScore={gameScore}
+                             setGameScore={setGameScore}
                              activeCards={activeCards}
                              setActiveCards={setActiveCards}
                              setIdOfLargeImageToView={setIdOfLargeImageToView}
@@ -190,6 +263,12 @@ const Game = (props) => {
     const setCardsFaceUp = props.setCardsFaceUp;
     const matchedCards = props.matchedCards;
     const setMatchedCards = props.setMatchedCards;
+    const cardFlipCounts = props.cardFlipCounts;
+    const setCardFlipCounts = props.setCardFlipCounts;
+    const gameScore = props.gameScore;
+    const setGameScore = props.setGameScore;
+
+
     const activeCards = props.activeCards;
     const setActiveCards = props.setActiveCards;
     const setIdOfLargeImageToView = props.setIdOfLargeImageToView;
@@ -209,6 +288,10 @@ const Game = (props) => {
                       setCardsFaceUp={setCardsFaceUp}
                       matchedCards={matchedCards}
                       setMatchedCards={setMatchedCards}
+                      cardFlipCounts={cardFlipCounts}
+                      setCardFlipCounts={setCardFlipCounts}
+                      gameScore={gameScore}
+                      setGameScore={setGameScore}
                       activeCards={activeCards}
                       setActiveCards={setActiveCards}
                       setIdOfLargeImageToView={setIdOfLargeImageToView}

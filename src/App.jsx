@@ -29,6 +29,8 @@ const App = () => {
     const [imageIdsForCards, setImageIdsForCards] = useState(null);
     const [cardsFaceUp, setCardsFaceUp] = useState(null);
     const [matchedCards, setMatchedCards] = useState(null);
+    const [cardFlipCounts, setCardFlipCounts] = useState(null);
+    const [gameScore, setGameScore] = useState(0);
     const [activeCards, setActiveCards] = useState([]);
     const [viewLargeImageId, setIdOfLargeImageToView] = useState(null);
     const [gameState, setGameState]  = useState('Not Started');
@@ -38,6 +40,13 @@ const App = () => {
         throw TypeError(`Error: Defect encountered in App component. Size not detected from dimension selector.`);
     }
     const size = parseInt(match[1]);
+
+    let cardsMatched = 0;
+    if (matchedCards) {
+        for (const imageId of matchedCards) {
+            cardsMatched += imageId ? 1 : 0;
+        }
+    }
 
     useLayoutEffect(
         () => {
@@ -125,6 +134,10 @@ const App = () => {
                 setCardsFaceUp={setCardsFaceUp}
                 matchedCards={matchedCards}
                 setMatchedCards={setMatchedCards}
+                cardFlipCounts={cardFlipCounts}
+                setCardFlipCounts={setCardFlipCounts}
+                gameScore={gameScore}
+                setGameScore={setGameScore}
                 activeCards={activeCards}
                 setActiveCards={setActiveCards}
                 setIdOfLargeImageToView={setIdOfLargeImageToView}
