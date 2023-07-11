@@ -15,6 +15,8 @@ const GameCard = (props) => {
     const activeCards = props.activeCards;
     const setActiveCards = props.setActiveCards;
     const setIdOfLargeImageToView = props.setIdOfLargeImageToView;
+    const gameState = props.gameState;
+    const setGameState = props.setGameState;
 
     const faceUp = cardsFaceUp ? cardsFaceUp[cardIndex] : false;
     const imageId = imageIdsForCards ? imageIdsForCards[cardIndex] : null;
@@ -26,7 +28,7 @@ const GameCard = (props) => {
 
     const onClick = () => {
         if (!faceUp) {
-            if (!imageId) {
+            if (gameState === 'Not Started') {
                 setUpCards();
                 let newActiveCards = activeCards ? [...activeCards, cardIndex] : [cardIndex];
                 setActiveCards([...activeCards, cardIndex]);
@@ -39,6 +41,7 @@ const GameCard = (props) => {
                 newCardsFaceUp[cardIndex] = true;
                 setActiveCards(newActiveCards);
                 setCardsFaceUp(newCardsFaceUp);
+                setGameState('IN-PROGRESS');
             } else {
                 if (!activeCards || activeCards.length < 1) {
                     let newCardsFaceUp = null;
@@ -136,6 +139,8 @@ const GameRow = (props) => {
     const activeCards = props.activeCards;
     const setActiveCards = props.setActiveCards;
     const setIdOfLargeImageToView = props.setIdOfLargeImageToView;
+    const gameState = props.gameState;
+    const setGameState = props.setGameState;
 
     const cards = [];
 
@@ -155,6 +160,8 @@ const GameRow = (props) => {
                              activeCards={activeCards}
                              setActiveCards={setActiveCards}
                              setIdOfLargeImageToView={setIdOfLargeImageToView}
+                             gameState={gameState}
+                             setGameState={setGameState}
                    />
         cards.push(card);
         if (i < size - 1) {
@@ -186,6 +193,8 @@ const Game = (props) => {
     const activeCards = props.activeCards;
     const setActiveCards = props.setActiveCards;
     const setIdOfLargeImageToView = props.setIdOfLargeImageToView;
+    const gameState = props.gameState;
+    const setGameState = props.setGameState;
 
     const rows = [];
 
@@ -203,6 +212,8 @@ const Game = (props) => {
                       activeCards={activeCards}
                       setActiveCards={setActiveCards}
                       setIdOfLargeImageToView={setIdOfLargeImageToView}
+                      gameState={gameState}
+                      setGameState={setGameState}
                   />
         rows.push(row)
     }

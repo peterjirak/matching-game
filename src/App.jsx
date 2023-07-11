@@ -31,6 +31,7 @@ const App = () => {
     const [matchedCards, setMatchedCards] = useState(null);
     const [activeCards, setActiveCards] = useState([]);
     const [viewLargeImageId, setIdOfLargeImageToView] = useState(null);
+    const [gameState, setGameState]  = useState('Not Started');
 
     const match = selectedDimension.match(/(\d+)/);
     if (!match) {
@@ -145,6 +146,8 @@ const App = () => {
                 activeCards={activeCards}
                 setActiveCards={setActiveCards}
                 setIdOfLargeImageToView={setIdOfLargeImageToView}
+                gameState={gameState}
+                setGameState={setGameState}
             />
         </div>
     )
