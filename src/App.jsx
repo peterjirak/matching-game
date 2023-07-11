@@ -94,13 +94,6 @@ const App = () => {
                 setupImageIdsForCards[card2] = imageId;
             }
             setImageIdsForCards(setupImageIdsForCards);
-
-            let faceUpCards = new Array(size * size).fill(false);
-            setCardsFaceUp(faceUpCards);
-            if (!matchedCards) {
-                let cardsMatched = new Array(size * size).fill(null);
-                setMatchedCards(cardsMatched);
-            }
         }
     }
 
