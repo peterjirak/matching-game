@@ -41,7 +41,7 @@ const GameCard = (props) => {
                 newCardsFaceUp[cardIndex] = true;
                 setActiveCards(newActiveCards);
                 setCardsFaceUp(newCardsFaceUp);
-                setGameState('IN-PROGRESS');
+                setGameState('In-Progress');
             } else {
                 if (!activeCards || activeCards.length < 1) {
                     let newCardsFaceUp = null;

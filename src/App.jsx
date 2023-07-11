@@ -1,7 +1,7 @@
 import { useLayoutEffect, useState } from 'react';
-import DropdownSingleItemSelector from './DropdownSingleItemSelector';
 import { dynamicallySizeGameElements, dynamicallySizeLargeImageViewer } from './js/dynamicResizeUtilities';
 import LargeImageViewer from './LargeImageViewer';
+import AboveGame from './AboveGame';
 import Game from './Game';
 import './App.css';
 
@@ -104,29 +104,18 @@ const App = () => {
                 collection={collection}
                 setIdOfLargeImageToView={setIdOfLargeImageToView}
             />
-            <div id='above-game' className="above-game">
-                <div className="above-game-left">
-                    <DropdownSingleItemSelector
-                        items='"Fairies", "Super Heroes", "Humanity in Space", "People with Cats", "People with Dogs"'
-                        selected={collection}
-                        setSelected={setCollection}
-                        isOpen={collectionSelectorOpen}
-                        setToOpen={setCollectionSelectorOpen}
-                    />
-                </div>
-                <div className="above-game-middle">
-                    <p className="game-title">The Match Game</p>
-                </div>
-                <div className="above-game-right">
-                <DropdownSingleItemSelector
-                        items={collectionDimensions[collection]}
-                        selected={selectedDimension}
-                        setSelected={setSelectedDimension}
-                        isOpen={dimensionSelectorOpen}
-                        setToOpen={setDimensionSelectorOpen}
-                />
-                </div>
-            </div>
+            <AboveGame
+                gameState={gameState}
+                collection={collection}
+                setCollection={setCollection}
+                collectionDimensions={collectionDimensions}
+                selectedDimension={selectedDimension}
+                setSelectedDimension={setSelectedDimension}
+                dimensionSelectorOpen={dimensionSelectorOpen}
+                setDimensionSelectorOpen={setDimensionSelectorOpen}
+                collectionSelectorOpen={collectionSelectorOpen}
+                setCollectionSelectorOpen={setCollectionSelectorOpen}
+            />
             <Game
                 size={size}
                 cardCollection={collection}
