@@ -1,5 +1,16 @@
 'use strict';
 
+const dynamicallySizeLargeImageViewer = () => {
+    const largeImageViewerElement = document.getElementById('large-image');
+    if (largeImageViewerElement) {
+        const viewportHeight = window.innerHeight;
+        const viewportWidth = window.innerWidth;
+        const largeImageDimension = viewportHeight < viewportWidth ? viewportHeight / 2 : viewportWidth / 2;
+        largeImageViewerElement.style.width = `${largeImageDimension}px`;
+        largeImageViewerElement.style.height = `${largeImageDimension}px`;
+    }
+}
+
 const dynamicallySizeGameElements = () => {
     const gameBoardElement = document.getElementById('game-board');
     if (gameBoardElement) {
@@ -49,4 +60,4 @@ const dynamicallySizeGameElements = () => {
     }
 }
 
-export { dynamicallySizeGameElements };
+export { dynamicallySizeGameElements, dynamicallySizeLargeImageViewer};

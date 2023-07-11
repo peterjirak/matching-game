@@ -254,13 +254,14 @@ body {
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.8);
+  cursor: pointer;
 }
 
 .large-image {
   display: flex;
   object-fit: contain;
-  height: 50%;
-  width: 50%;
+  height: 1px;
+  width: 1px;
   box-sizing: border-box;
   cursor: pointer;
 }

@@ -1,6 +1,7 @@
 import { useLayoutEffect, useState } from 'react';
 import DropdownSingleItemSelector from './DropdownSingleItemSelector';
-import { dynamicallySizeGameElements } from './js/dynamicResizeUtilities';
+import { dynamicallySizeGameElements, dynamicallySizeLargeImageViewer } from './js/dynamicResizeUtilities';
+import LargeImageViewer from './LargeImageViewer';
 import Game from './Game';
 import './App.css';
 
@@ -18,33 +19,6 @@ const collectionDimensions = {
     'People with Cats': '"4 x 4", "6 x 6", "8 x 8", "10 x 10", "12 x 12"',
     'People with Dogs': '"4 x 4", "6 x 6", "8 x 8", "10 x 10"',
     'Super Heroes': '"4 x 4", "6 x 6", "8 x 8", "10 x 10"'
-}
-
-const LargeImageViewer = (props) => {
-    const imageId = props.imageId;
-    const collection = props.collection;
-    const setIdOfLargeImageToView = props.setIdOfLargeImageToView;
-
-    if (!imageId) {
-        return null;
-    }
-
-    let collectionId = collection;
-    collectionId = collectionId.trim();
-    collectionId = collectionId.toLowerCase();
-    collectionId = collectionId.replace(/ /g, '-');
-
-    const src = `/src/images/match-collections/${collectionId}/${collectionId}-id-${imageId}.png`;
-
-    const onClick = () => {
-        setIdOfLargeImageToView(null);
-    }
-
-    return (
-        <div className='large-image-viewer-container'>
-            <img className='large-image' src={src} onClick={onClick}></img>
-        </div>
-    );
 }
 
 const App = () => {
@@ -67,6 +41,7 @@ const App = () => {
     useLayoutEffect(
         () => {
             dynamicallySizeGameElements();
+            dynamicallySizeLargeImageViewer();
         }
     );
 
