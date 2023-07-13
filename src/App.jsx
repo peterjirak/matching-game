@@ -10,10 +10,12 @@ const cardCounts = {
     'Humanity in Space': 61,
     'People with Cats': 98,
     'People with Dogs': 63,
-    'Super Heroes': 65
+    'Super Heroes': 65,
+    'A Spring Celebration': 103
 };
 
 const collectionDimensions = {
+    'A Spring Celebration': '"4 x 4", "6 x 6", "8 x 8", "10 x 10", "12 x 12"',
     'Fairies': '"4 x 4", "6 x 6", "8 x 8", "10 x 10", "12 x 12"',
     'Humanity in Space': '"4 x 4", "6 x 6", "8 x 8", "10 x 10"',
     'People with Cats': '"4 x 4", "6 x 6", "8 x 8", "10 x 10", "12 x 12"',
