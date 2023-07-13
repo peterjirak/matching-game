@@ -14,6 +14,96 @@ body {
     background-color: #D1FFD5;
 }
 
+.configure-game-container {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  z-index: 30;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.above-game-configuration-container {
+  display: flex;
+  height: 121px;
+}
+
+.display-play-game-popup-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 100vw;
+  height: 100%;
+}
+
+.game-configuration-choose-collection-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 80%;
+  height: 80%;
+}
+
+.choose-collection-prompt {
+  display: flex;
+  font-family: 'Noto Sans', sans-serif;
+  font-size: 32px;
+  font-weight: 600;
+  color: white;
+  text-shadow: -4px 0 black, 0 4px black, 4px 0 black, 0 -4px black;
+}
+
+.sample-card {
+  display: flex;
+  height: 40%;
+  width: 40%;
+  object-fit: contain;
+}
+
+.play-game-title {
+  display: flex;
+  font-family: 'Noto Sans', sans-serif;
+  font-size: 64px;
+  font-weight: 600;
+  color: white;
+  text-shadow: -4px 0 black, 0 4px black, 4px 0 black, 0 -4px black;
+}
+
+.play-game-button {
+  display: flex;
+  background: none; /* #6ACAF7; */
+  background-color: #6ACAF7;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+  -webkit-appearance: none; /* Remove style in Safari */
+  -moz-appearance: none; /* Remove style in Firefox */
+  appearance: none; /* Remove style in other browsers */
+  border-radius: 20px;
+}
+
+.play-game-button-text {
+  display: flex;
+  font-family: 'Noto Sans', sans-serif;
+  font-size: 30px;
+  font-weight: 600;
+  color: white;
+  background-color: #6ACAF7;
+  text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 20px;
+}
+
 .game-title {
   font-family: 'Noto Sans', sans-serif;
   font-size: 36px;
@@ -26,6 +116,7 @@ body {
   justify-content: space-between;
   align-items: center;
   width: 100vw;
+  height: 121px;
 }
 
 .above-game-left {

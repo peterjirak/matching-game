@@ -3,10 +3,29 @@ import { dynamicallySizeGameElements, dynamicallySizeLargeImageViewer } from './
 import LargeImageViewer from './LargeImageViewer';
 import AboveGame from './AboveGame';
 import Game from './Game';
+import ConfigureGame from './ConfigureGame';
 import './App.css';
 
+const collections = [
+    'Fairies',
+    'Super Heroes',
+    'Humanity in Space',
+    'People with Cats',
+    'People with Dogs',
+    'A Spring Celebration'
+];
+
+const sampleCards = {
+    'Fairies': 90,
+    'Super Heroes': 33,
+    'Humanity in Space': 9,
+    'People with Cats': 7,
+    'People with Dogs': 20,
+    'A Spring Celebration': 25
+};
+
 const cardCounts = {
-    'Fairies': 80,
+    'Fairies': 90,
     'Humanity in Space': 61,
     'People with Cats': 98,
     'People with Dogs': 63,
@@ -35,6 +54,12 @@ const App = () => {
     const [gameScore, setGameScore] = useState(0);
     const [activeCards, setActiveCards] = useState([]);
     const [viewLargeImageId, setIdOfLargeImageToView] = useState(null);
+
+    // gameStates are:
+    //     * 'Not Started'
+    //     * 'Select Collection'
+    //     * 'Select Dimension'
+    //     * 'In-Progress'
     const [gameState, setGameState]  = useState('Not Started');
 
     const match = selectedDimension.match(/(\d+)/);
@@ -108,8 +133,24 @@ const App = () => {
         }
     }
 
+    const setToSelectCollection = () => {
+        setGameState('Select Collection');
+    }
+
+    const configureGameElement = gameState === 'Not Started' || gameState === 'Select Collection' || gameState === 'Selection Dimension' ?
+                                 <ConfigureGame
+                                     gameState={gameState}
+                                     setToSelectCollection={setToSelectCollection}
+                                     collections={collections}
+                                     collection={collection}
+                                     setCollection={setCollection}
+                                     sampleCards={sampleCards}
+                                 />
+                                 : null;
+
     return (
         <div id="app-container" className="app-container">
+            {configureGameElement}
             <LargeImageViewer
                 imageId={viewLargeImageId}
                 collection={collection}
