@@ -1,12 +1,5 @@
 import { getImgSrcPath } from "./js/gameUtilities";
 
-const AboveGameConfiguration = (props) => {
-    return (
-        <div className='above-game-configuration-container'>
-        </div>
-    );
-}
-
 const DisplayPlayGamePopup = (props) => {
     const setToSelectCollection = props.setToSelectCollection;
 
@@ -117,7 +110,6 @@ const ConfigureGame = (props) => {
 
     return (
         <div className='configure-game-container'>
-            <AboveGameConfiguration />
             <GameConfigurationBody
                 gameState={gameState}
                 setToSelectCollection={setToSelectCollection}
