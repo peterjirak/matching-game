@@ -15,25 +15,11 @@ const AboveGameNotStarted = (props) => {
     return (
         <div id='above-game' className="above-game">
             <div className="above-game-left">
-                <DropdownSingleItemSelector
-                    items='"Fairies", "Super Heroes", "Humanity in Space", "People with Cats", "People with Dogs"'
-                    selected={collection}
-                    setSelected={setCollection}
-                    isOpen={collectionSelectorOpen}
-                    setToOpen={setCollectionSelectorOpen}
-                />
             </div>
             <div className="above-game-middle">
-                <p className="game-title">The Match Game</p>
+                <p className="game-title">&nbsp;</p>
             </div>
             <div className="above-game-right">
-                <DropdownSingleItemSelector
-                        items={collectionDimensions[collection]}
-                        selected={selectedDimension}
-                        setSelected={setSelectedDimension}
-                        isOpen={dimensionSelectorOpen}
-                        setToOpen={setDimensionSelectorOpen}
-                />
             </div>
         </div>
     );
@@ -45,7 +31,7 @@ const AboveGameInProgress = (props) => {
             <div className="above-game-left">
             </div>
             <div className="above-game-middle">
-                <p className="game-title">The Match Game</p>
+                <p className="game-title">&nbsp;</p>
             </div>
             <div className="above-game-right">
             </div>

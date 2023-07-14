@@ -53,10 +53,66 @@ body {
 .choose-collection-prompt {
   display: flex;
   font-family: 'Noto Sans', sans-serif;
-  font-size: 32px;
+  font-size: 42px;
   font-weight: 600;
   color: white;
   text-shadow: -4px 0 black, 0 4px black, 4px 0 black, 0 -4px black;
+}
+
+.configure-collection-selector-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  margin-bottom: 25px;
+  box-sizing: border-box;
+  width: 300px;
+  height: 106px;
+  border-top: 10px solid #AAA8A8;
+  border-bottom: 10px solid #AAA8A8;
+}
+
+.configure-collection-selector-chevron-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: none; /* remove default background */
+  color: inherit; /* inherit text color from parent */
+  border: none; /* remove default border */
+  padding: 0; /* remove default padding */
+  margin: 0;
+  font: inherit; /* inherit font from parent */
+  cursor: pointer; /* retain the hand cursor on hover */
+  outline: inherit; /* inherit outline from parent */
+  border-left: 10px solid #AAA8A8;
+  border-right: 10px solid #AAA8A8;
+  width: 85px;
+  height: 86px;
+}
+
+.configure-collection-selector-chevron-right-img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.left-right-mirror-flip-img {
+  transform: scaleX(-1);
+}
+
+.configure-collection-title {
+  font-family: 'Roboto', sans-serif;
+  font-size: 28px;
+  font-weight: 600;
+  color: black;
+  background-color: white;
+  text-align: center;
+  vertical-align: middle;
+  margin: 0;
 }
 
 .sample-card {

@@ -29,10 +29,40 @@ const ConfigureCollection = (props) => {
 
     const cardImgSrc = getImgSrcPath(collection, sampleCards[collection]);
 
+    const collectionIndex = collections.indexOf(collection);
+
+    if (collectionIndex < 0) {
+        throw new RangeError(`The collection ${collection} is not in the list of collections.`);
+    }
+
+    const leftCollectionIndex = collectionIndex === 0 ? collections.length - 1 : collectionIndex - 1;
+    const rightCollectionIndex = collectionIndex < collections.length - 1 ? collectionIndex + 1 : 0;
+    const leftCollection = collections[leftCollectionIndex];
+    const rightCollection = collections[rightCollectionIndex];
+
+    const onLeftChevronButtonClick = () => {
+        setCollection(leftCollection);
+    }
+
+    const onRightChevronButtonClick = () => {
+        setCollection(rightCollection);
+    }
+
     return (
         <div id='game-configuration-body' className='display-play-game-popup-container'>
             <div className='game-configuration-choose-collection-container'>
                 <p className='choose-collection-prompt'>Choose Collection</p>
+                <div className='configure-collection-selector-container'>
+                    <button className='configure-collection-selector-chevron-button' onClick={onLeftChevronButtonClick}>
+                        <img className='configure-collection-selector-chevron-right-img left-right-mirror-flip-img' src='/src/images/application-controls/chevron-right.svg'>
+                            </img>
+                        </button>
+                    <p className="configure-collection-title">{collection}</p>
+                    <button className='configure-collection-selector-chevron-button' onClick={onRightChevronButtonClick}>
+                        <img className='configure-collection-selector-chevron-right-img' src='/src/images/application-controls/chevron-right.svg'>
+                        </img>
+                    </button>
+                </div>
                 <img className='sample-card' src={cardImgSrc}>
                 </img>
             </div>
