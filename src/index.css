@@ -158,6 +158,48 @@ body {
   border-radius: 20px;
 }
 
+.next-button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background: none;
+  background-color: #6ACAF7;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+  -webkit-appearance: none; /* Remove style in Safari */
+  -moz-appearance: none; /* Remove style in Firefox */
+  appearance: none; /* Remove style in other browsers */
+  border-radius: 20px;
+}
+
+.next-button-text {
+  display: flex;
+  font-family: 'Noto Sans', sans-serif;
+  font-size: 30px;
+  font-weight: 600;
+  color: white;
+  background-color: #6ACAF7;
+  text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  cursor: pointer;
+  border-radius: 20px;
+}
+
+.next-button-chevron-right-img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  margin-left: 40px;
+}
+
 .game-title {
   font-family: 'Noto Sans', sans-serif;
   font-size: 36px;

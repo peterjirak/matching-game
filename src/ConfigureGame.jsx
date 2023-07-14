@@ -58,6 +58,10 @@ const ConfigureCollection = (props) => {
                 </div>
                 <img className='sample-card' src={cardImgSrc}>
                 </img>
+                <button type='button' className='next-button'>
+                 <p className='next-button-text'>Next</p>
+                 <img className='next-button-chevron-right-img' src='/src/images/application-controls/chevron-right-white.svg'></img>
+                </button>
             </div>
         </div>
     );
