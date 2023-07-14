@@ -45,7 +45,7 @@ body {
 .display-play-game-popup-container {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   width: 100vw;
   height: 100%;
@@ -136,8 +136,9 @@ body {
 
 .sample-card {
   display: flex;
-  height: 90%;
-  width: 90%;
+  flex-shrink: 1;
+  height: 70%;
+  width: 70%;
   max-height: 800px;
   max-width: 800px;
   object-fit: contain;
@@ -179,6 +180,7 @@ body {
   padding: 10px;
   cursor: pointer;
   border-radius: 20px;
+  margin-bottom: 30vh;
 }
 
 .next-button {
