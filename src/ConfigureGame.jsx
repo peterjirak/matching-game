@@ -42,7 +42,7 @@ const ConfigureCollection = (props) => {
     }
 
     return (
-        <div id='game-configuration-body' className='display-play-game-popup-container'>
+        <div id='game-configuration-body' className='display-play-game-popup-container-choose-collection'>
             <div className='game-configuration-choose-collection-container'>
                 <p className='choose-collection-prompt'>Choose Collection</p>
                 <div className='configure-collection-selector-container'>
@@ -111,9 +111,10 @@ const ConfigureGame = (props) => {
     const setCollection = props.setCollection;
     const sampleCards = props.sampleCards;
 
+    const className = gameState === 'Not Started' ? 'configure-game-container' : 'configure-game-container-choose-collection';
 
     return (
-        <div className='configure-game-container'>
+        <div className={className}>
             <GameConfigurationBody
                 gameState={gameState}
                 setToSelectCollection={setToSelectCollection}
