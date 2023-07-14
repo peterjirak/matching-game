@@ -46,12 +46,12 @@ const ConfigureCollection = (props) => {
             <div className='game-configuration-choose-collection-container'>
                 <p className='choose-collection-prompt'>Choose Collection</p>
                 <div className='configure-collection-selector-container'>
-                    <button className='configure-collection-selector-chevron-button' onClick={onLeftChevronButtonClick}>
+                    <button className='configure-collection-selector-chevron-button' onClick={onLeftChevronButtonClick} type='button'>
                         <img className='configure-collection-selector-chevron-right-img left-right-mirror-flip-img' src='/src/images/application-controls/chevron-right.svg'>
                             </img>
                         </button>
                     <p className="configure-collection-title">{collection}</p>
-                    <button className='configure-collection-selector-chevron-button' onClick={onRightChevronButtonClick}>
+                    <button className='configure-collection-selector-chevron-button' onClick={onRightChevronButtonClick} type='button'>
                         <img className='configure-collection-selector-chevron-right-img' src='/src/images/application-controls/chevron-right.svg'>
                         </img>
                     </button>
