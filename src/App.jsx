@@ -129,6 +129,11 @@ const App = () => {
         setGameState('Select Size')
     }
 
+    const startGame = () => {
+        setGameState('In-Progress');
+        setUpCards();
+    }
+
     const configureGameElement = gameState === 'Not Started' || gameState === 'Select Collection' || gameState === 'Select Size' ?
                                  <ConfigureGame
                                      gameState={gameState}
@@ -141,6 +146,7 @@ const App = () => {
                                      maxSizeByCollection={maxSizeByCollection}
                                      selectedSize={selectedSize}
                                      setSelectedSize={setSelectedSize}
+                                     startGame={startGame}
                                  />
                                  : null;
 

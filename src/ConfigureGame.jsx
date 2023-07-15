@@ -86,6 +86,7 @@ const ConfigureSize = (props) => {
     const selectedSize = props.selectedSize;
     const maxSizeByCollection = props.maxSizeByCollection;
     const setSelectedSize = props.setSelectedSize;
+    const startGame = props.startGame;
 
     const decreaseSize = () => {
         setSelectedSize( selectedSize - 2 );
@@ -123,7 +124,7 @@ const ConfigureSize = (props) => {
                 </div>
                 <div className='sample-card'>
                 </div>
-                <button type='button' className='next-button'>
+                <button type='button' className='next-button' onClick={startGame}>
                      <p className='next-button-text'>Start</p>
                      <img className='next-button-chevron-right-img' src='/src/images/application-controls/chevron-right-white.svg'></img>
                 </button>
@@ -143,6 +144,7 @@ const GameConfigurationBody = (props) => {
     const maxSizeByCollection = props.maxSizeByCollection;
     const selectedSize = props.selectedSize;
     const setSelectedSize = props.setSelectedSize;
+    const startGame = props.startGame;
 
 
     if (gameState === 'Not Started') {
@@ -175,6 +177,7 @@ const GameConfigurationBody = (props) => {
                 maxSizeByCollection={maxSizeByCollection}
                 selectedSize={selectedSize}
                 setSelectedSize={setSelectedSize}
+                startGame={startGame}
             />
         );
     }
@@ -189,8 +192,9 @@ const ConfigureGame = (props) => {
     const setCollection = props.setCollection;
     const maxSizeByCollection = props.maxSizeByCollection;
     const sampleCards = props.sampleCards;
-    const selectedSize= props.selectedSize;
-    const setSelectedSize= props.setSelectedSize;
+    const selectedSize = props.selectedSize;
+    const setSelectedSize = props.setSelectedSize;
+    const startGame = props.startGame;
 
     const className = gameState === 'Not Started' ? 'configure-game-container' : 'configure-game-container-choose-collection';
 
@@ -207,6 +211,7 @@ const ConfigureGame = (props) => {
                 maxSizeByCollection={maxSizeByCollection}
                 selectedSize={selectedSize}
                 setSelectedSize={setSelectedSize}
+                startGame={startGame}
             />
         </div>
     );
