@@ -87,18 +87,39 @@ const ConfigureSize = (props) => {
     const maxSizeByCollection = props.maxSizeByCollection;
     const setSelectedSize = props.setSelectedSize;
 
+    const decreaseSize = () => {
+        setSelectedSize( selectedSize - 2 );
+    }
+
+    const increaseSelectedSize = () => {
+        setSelectedSize( selectedSize + 2 );
+    }
+
+    const decreaseSizeControl = selectedSize <= 4 ?
+                                    <div className='configure-attribute-selector-button'>
+                                        <p className='size-button-text size-text-padding size-button-text-disabled'>-</p>
+                                    </div> :
+                                    <button className='configure-attribute-selector-button' type='button' onClick={decreaseSize}>
+                                        <p className='size-button-text size-text-padding size-button-text-enabled'>-</p>
+                                    </button>
+
+    const increaseSizeControl = selectedSize < maxSizeByCollection[collection] ?
+                                    <button className='configure-attribute-selector-button' onClick={increaseSelectedSize}>
+                                        <p className='size-button-text size-button-text-enabled'>+</p>
+                                    </button> :
+                                    <div className='configure-attribute-selector-button' type='button'>
+                                        <p className='size-button-text size-button-text-disabled'>+</p>
+                                    </div>
+
+
     return (
         <div id='game-configuration-body' className='display-play-game-popup-container-choose-collection'>
             <div className='game-configuration-container'>
                 <p className='choose-configuration-attribute-prompt'>Choose Size</p>
                 <div className='configure-attribute-selector-container'>
-                    <button className='configure-attribute-selector-button' type='button'>
-                        <p className='size-button-text size-text-padding'>-</p>
-                    </button>
+                    {decreaseSizeControl}
                     <p className="configure-attribute-title">{selectedSize} x {selectedSize}</p>
-                    <button className='configure-attribute-selector-button' type='button'>
-                        <p className='size-button-text'>+</p>
-                    </button>
+                    {increaseSizeControl}
                 </div>
                 <div className='sample-card'>
                 </div>

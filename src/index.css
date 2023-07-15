@@ -221,9 +221,16 @@ body {
   font-family: 'Noto Sans', sans-serif;
   font-size: 64px;
   font-weight: 900;
-  color: black;
   cursor: pointer;
   box-sizing: border-box;
+}
+
+.size-button-text-enabled {
+  color: black;
+}
+
+.size-button-text-disabled {
+  color: #AAAAAA;
 }
 
 .size-text-padding {
