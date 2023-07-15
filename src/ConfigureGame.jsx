@@ -19,6 +19,10 @@ const ConfigureCollection = (props) => {
     const collection = props.collection;
     const setCollection = props.setCollection;
     const sampleCards = props.sampleCards;
+    const maxSizeByCollection = props.maxSizeByCollection;
+    const setToSelectSize = props.setToSelectSize;
+    const selectedSize = props.selectedSize;
+    const setSelectedSize = props.setSelectedSize;
 
     const cardImgSrc = getImgSrcPath(collection, sampleCards[collection]);
 
@@ -35,50 +39,89 @@ const ConfigureCollection = (props) => {
 
     const onLeftChevronButtonClick = () => {
         setCollection(leftCollection);
+        if (!selectedSize) {
+            setSelectedSize(4);
+        } else if (selectedSize > maxSizeByCollection[leftCollection]) {
+            setSelectedSize(maxSizeByCollection[leftCollection]);
+        }
     }
 
     const onRightChevronButtonClick = () => {
         setCollection(rightCollection);
+        if (!selectedSize) {
+            setSelectedSize(4);
+        } else if (selectedSize > maxSizeByCollection[leftCollection]) {
+            setSelectedSize(maxSizeByCollection[leftCollection]);
+        }
     }
 
     return (
         <div id='game-configuration-body' className='display-play-game-popup-container-choose-collection'>
-            <div className='game-configuration-choose-collection-container'>
-                <p className='choose-collection-prompt'>Choose Collection</p>
-                <div className='configure-collection-selector-container'>
-                    <button className='configure-collection-selector-chevron-button' onClick={onLeftChevronButtonClick} type='button'>
+            <div className='game-configuration-container'>
+                <p className='choose-configuration-attribute-prompt'>Choose Collection</p>
+                <div className='configure-attribute-selector-container'>
+                    <button className='configure-attribute-selector-button' onClick={onLeftChevronButtonClick} type='button'>
                         <img className='configure-collection-selector-chevron-right-img left-right-mirror-flip-img' src='/src/images/application-controls/chevron-right.svg'>
-                            </img>
-                        </button>
-                    <p className="configure-collection-title">{collection}</p>
-                    <button className='configure-collection-selector-chevron-button' onClick={onRightChevronButtonClick} type='button'>
+                        </img>
+                    </button>
+                    <p className="configure-attribute-title">{collection}</p>
+                    <button className='configure-attribute-selector-button' onClick={onRightChevronButtonClick} type='button'>
                         <img className='configure-collection-selector-chevron-right-img' src='/src/images/application-controls/chevron-right.svg'>
                         </img>
                     </button>
                 </div>
                 <img className='sample-card' src={cardImgSrc}>
                 </img>
-                <button type='button' className='next-button'>
-                 <p className='next-button-text'>Next</p>
-                 <img className='next-button-chevron-right-img' src='/src/images/application-controls/chevron-right-white.svg'></img>
+                <button type='button' className='next-button' onClick={setToSelectSize}>
+                     <p className='next-button-text'>Next</p>
+                     <img className='next-button-chevron-right-img' src='/src/images/application-controls/chevron-right-white.svg'></img>
                 </button>
             </div>
         </div>
     );
-
 }
 
-const ConfigureDimension = (props) => {
+const ConfigureSize = (props) => {
+    const collection = props.collection;
+    const selectedSize = props.selectedSize;
+    const maxSizeByCollection = props.maxSizeByCollection;
+    const setSelectedSize = props.setSelectedSize;
 
+    return (
+        <div id='game-configuration-body' className='display-play-game-popup-container-choose-collection'>
+            <div className='game-configuration-container'>
+                <p className='choose-configuration-attribute-prompt'>Choose Size</p>
+                <div className='configure-attribute-selector-container'>
+                    <button className='configure-attribute-selector-button' type='button'>
+                        <p className='size-button-text size-text-padding'>-</p>
+                    </button>
+                    <p className="configure-attribute-title">{selectedSize} x {selectedSize}</p>
+                    <button className='configure-attribute-selector-button' type='button'>
+                        <p className='size-button-text'>+</p>
+                    </button>
+                </div>
+                <div className='sample-card'>
+                </div>
+                <button type='button' className='next-button'>
+                     <p className='next-button-text'>Start</p>
+                     <img className='next-button-chevron-right-img' src='/src/images/application-controls/chevron-right-white.svg'></img>
+                </button>
+            </div>
+        </div>
+    );
 }
 
 const GameConfigurationBody = (props) => {
     const gameState = props.gameState;
     const setToSelectCollection = props.setToSelectCollection;
+    const setToSelectSize = props.setToSelectSize;
     const collections = props.collections;
     const collection = props.collection;
     const setCollection = props.setCollection;
     const sampleCards = props.sampleCards;
+    const maxSizeByCollection = props.maxSizeByCollection;
+    const selectedSize = props.selectedSize;
+    const setSelectedSize = props.setSelectedSize;
 
 
     if (gameState === 'Not Started') {
@@ -91,13 +134,26 @@ const GameConfigurationBody = (props) => {
                 sampleCards={sampleCards}
             />
         )
-    } else {
+    } else if (gameState === 'Select Collection') {
         return (
             <ConfigureCollection
                 collections={collections}
                 collection={collection}
                 setCollection={setCollection}
                 sampleCards={sampleCards}
+                maxSizeByCollection={maxSizeByCollection}
+                selectedSize={selectedSize}
+                setSelectedSize={setSelectedSize}
+                setToSelectSize={setToSelectSize}
+            />
+        );
+    } else {
+        return (
+            <ConfigureSize
+                collection={collection}
+                maxSizeByCollection={maxSizeByCollection}
+                selectedSize={selectedSize}
+                setSelectedSize={setSelectedSize}
             />
         );
     }
@@ -106,10 +162,14 @@ const GameConfigurationBody = (props) => {
 const ConfigureGame = (props) => {
     const gameState = props.gameState;
     const setToSelectCollection = props.setToSelectCollection;
+    const setToSelectSize = props.setToSelectSize;
     const collections = props.collections;
     const collection = props.collection;
     const setCollection = props.setCollection;
+    const maxSizeByCollection = props.maxSizeByCollection;
     const sampleCards = props.sampleCards;
+    const selectedSize= props.selectedSize;
+    const setSelectedSize= props.setSelectedSize;
 
     const className = gameState === 'Not Started' ? 'configure-game-container' : 'configure-game-container-choose-collection';
 
@@ -118,10 +178,14 @@ const ConfigureGame = (props) => {
             <GameConfigurationBody
                 gameState={gameState}
                 setToSelectCollection={setToSelectCollection}
+                setToSelectSize={setToSelectSize}
                 collections={collections}
                 collection={collection}
                 setCollection={setCollection}
                 sampleCards={sampleCards}
+                maxSizeByCollection={maxSizeByCollection}
+                selectedSize={selectedSize}
+                setSelectedSize={setSelectedSize}
             />
         </div>
     );

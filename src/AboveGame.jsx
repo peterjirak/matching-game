@@ -5,8 +5,8 @@ const AboveGameNotStarted = (props) => {
     const collection = props.collection;
     const setCollection = props.setCollection;
     const collectionDimensions = props.collectionDimensions;
-    const selectedDimension = props.selectedDimension;
-    const setSelectedDimension = props.setSelectedDimension;
+    const selectedSize = props.selectedSize;
+    const setSelectedSize = props.setSelectedSize;
     const dimensionSelectorOpen = props.dimensionSelectorOpen;
     const setDimensionSelectorOpen = props.setDimensionSelectorOpen;
     const collectionSelectorOpen = props.collectionSelectorOpen;
@@ -44,8 +44,8 @@ const AboveGame = (props) => {
     const collection = props.collection;
     const setCollection = props.setCollection;
     const collectionDimensions = props.collectionDimensions;
-    const selectedDimension = props.selectedDimension;
-    const setSelectedDimension = props.setSelectedDimension;
+    const selectedSize = props.selectedSize;
+    const setSelectedSize = props.setSelectedSize;
     const dimensionSelectorOpen = props.dimensionSelectorOpen;
     const setDimensionSelectorOpen = props.setDimensionSelectorOpen;
     const collectionSelectorOpen = props.collectionSelectorOpen;
@@ -57,8 +57,8 @@ const AboveGame = (props) => {
                 collection={collection}
                 setCollection={setCollection}
                 collectionDimensions={collectionDimensions}
-                selectedDimension={selectedDimension}
-                setSelectedDimension={setSelectedDimension}
+                selectedSize={selectedSize}
+                setSelectedSize={setSelectedSize}
                 dimensionSelectorOpen={dimensionSelectorOpen}
                 setDimensionSelectorOpen={setDimensionSelectorOpen}
                 collectionSelectorOpen={collectionSelectorOpen}

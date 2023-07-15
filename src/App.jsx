@@ -33,6 +33,15 @@ const cardCounts = {
     'A Spring Celebration': 103
 };
 
+const maxSizeByCollection = {
+    'Fairies': 12,
+    'Humanity in Space': 10,
+    'People with Cats': 12,
+    'People with Dogs': 10,
+    'Super Heroes': 10,
+    'A Spring Celebration': 12
+};
+
 const collectionDimensions = {
     'A Spring Celebration': '"4 x 4", "6 x 6", "8 x 8", "10 x 10", "12 x 12"',
     'Fairies': '"4 x 4", "6 x 6", "8 x 8", "10 x 10", "12 x 12"',
@@ -44,7 +53,7 @@ const collectionDimensions = {
 
 const App = () => {
     const [dimensionSelectorOpen, setDimensionSelectorOpen] = useState(false);
-    const [selectedDimension, setSelectedDimension] = useState('4 x 4');
+    const [selectedSize, setSelectedSize] = useState(4);
     const [collectionSelectorOpen, setCollectionSelectorOpen] = useState(false);
     const [collection, setCollection] = useState('Fairies');
     const [imageIdsForCards, setImageIdsForCards] = useState(null);
@@ -62,12 +71,6 @@ const App = () => {
     //     * 'In-Progress'
     const [gameState, setGameState]  = useState('Not Started');
 
-    const match = selectedDimension.match(/(\d+)/);
-    if (!match) {
-        throw TypeError(`Error: Defect encountered in App component. Size not detected from dimension selector.`);
-    }
-    const size = parseInt(match[1]);
-
     let cardsMatched = 0;
     if (matchedCards) {
         for (const imageId of matchedCards) {
@@ -82,27 +85,12 @@ const App = () => {
         }
     );
 
-    useLayoutEffect(
-        () => {
-            const dimensions = collectionDimensions[collection];
-            if (!dimensions.includes(selectedDimension)) {
-                let dimensionsStr = dimensions;
-                dimensionsStr = dimensionsStr.trim();
-                dimensionsStr = dimensionsStr.replace(/^\s*"\s*/, '');
-                dimensionsStr = dimensionsStr.replace(/\s*"\s*$/, '');
-                const dimensionsForCollection = dimensionsStr.split(/\s*"\s*,\s*"\s*/);
-                const useDimension = dimensionsForCollection[ -1 + dimensionsForCollection.length];
-                setSelectedDimension(useDimension);
-            }
-        }
-    );
-
     const setUpCards = () => {
         if (!imageIdsForCards) {
             let imageIds = Array.from({length: cardCounts[collection]}, (_, i) => i + 1);
-            let cardIds = Array.from({length: size * size}, (_, i) => i);
-            const setupImageIdsForCards = new Array(size * size).fill(null);
-            for (let i = 0; i < size * size / 2; i += 1) {
+            let cardIds = Array.from({length: selectedSize * selectedSize}, (_, i) => i);
+            const setupImageIdsForCards = new Array(selectedSize * selectedSize).fill(null);
+            for (let i = 0; i < selectedSize * selectedSize / 2; i += 1) {
                 let card1 = null;
                 let card2 = null;
                 if (cardIds.length === 2) {
@@ -137,14 +125,22 @@ const App = () => {
         setGameState('Select Collection');
     }
 
-    const configureGameElement = gameState === 'Not Started' || gameState === 'Select Collection' || gameState === 'Selection Dimension' ?
+    const setToSelectSize = () => {
+        setGameState('Select Size')
+    }
+
+    const configureGameElement = gameState === 'Not Started' || gameState === 'Select Collection' || gameState === 'Select Size' ?
                                  <ConfigureGame
                                      gameState={gameState}
                                      setToSelectCollection={setToSelectCollection}
+                                     setToSelectSize={setToSelectSize}
                                      collections={collections}
                                      collection={collection}
                                      setCollection={setCollection}
                                      sampleCards={sampleCards}
+                                     maxSizeByCollection={maxSizeByCollection}
+                                     selectedSize={selectedSize}
+                                     setSelectedSize={setSelectedSize}
                                  />
                                  : null;
 
@@ -161,15 +157,15 @@ const App = () => {
                 collection={collection}
                 setCollection={setCollection}
                 collectionDimensions={collectionDimensions}
-                selectedDimension={selectedDimension}
-                setSelectedDimension={setSelectedDimension}
+                selectedSize={selectedSize}
+                setSelectedSize={setSelectedSize}
                 dimensionSelectorOpen={dimensionSelectorOpen}
                 setDimensionSelectorOpen={setDimensionSelectorOpen}
                 collectionSelectorOpen={collectionSelectorOpen}
                 setCollectionSelectorOpen={setCollectionSelectorOpen}
             />
             <Game
-                size={size}
+                size={selectedSize}
                 cardCollection={collection}
                 setUpCards={setUpCards}
                 imageIdsForCards={imageIdsForCards}
