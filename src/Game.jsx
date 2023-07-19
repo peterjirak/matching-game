@@ -185,8 +185,10 @@ const GameCard = (props) => {
         src = `/src/images/match-collections/${collectionId}/${collectionId}-id-${imageId}.png`;
     }
 
+    const cardClassNames = 'game-card' + ( faceUp ? ' game-card-face-up' : '' );
+
     return (
-        <img id={`card-${cardIndex}`} className='game-card' src={src} onClick={onClick}>
+        <img id={`card-${cardIndex}`} className={cardClassNames} src={src} onClick={onClick}>
         </img>
     );
 }

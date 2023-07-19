@@ -463,6 +463,10 @@ body {
   cursor: pointer;
 }
 
+.game-card-face-up {
+  cursor: zoom-in;
+}
+
 .row-spacer {
   display: flex;
   min-width: 1px;
@@ -489,7 +493,7 @@ body {
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.8);
-  cursor: pointer;
+  cursor: zoom-out;
 }
 
 .large-image {
@@ -498,5 +502,5 @@ body {
   height: 1px;
   width: 1px;
   box-sizing: border-box;
-  cursor: pointer;
+  cursor: zoom-out;
 }
