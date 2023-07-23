@@ -25,6 +25,30 @@ const AboveGameNotStarted = (props) => {
     );
 }
 
+const ElapsedTime = (props) => {
+    let elapsedMilliseconds = props.elapsedMilliseconds;
+    let elapsedSeconds = Math.floor(elapsedMilliseconds / 1000);
+    let elapsedMinutes = Math.floor( elapsedSeconds / 60 );
+    elapsedSeconds = elapsedSeconds % 60;
+
+    if (elapsedSeconds < 10) {
+        elapsedSeconds = `0${elapsedSeconds}`;
+    }
+
+    if (elapsedMinutes < 10) {
+        elapsedMinutes = `0${elapsedMinutes}`;
+    }
+
+    return (
+        <div className='elapsed-time-attribute-with-label'>
+            <div className='elapsed-time-attribute-container'>
+                <p className='elapsed-time-completed-text'>{elapsedMinutes}:{elapsedSeconds}</p>
+            </div>
+            <div><p className='elapsed-time-completed-label-text'>Elapsed Time</p></div>
+        </div>
+    );
+}
+
 const GameScore = (props) => {
     const gameScore = props.gameScore;
 
@@ -69,14 +93,26 @@ const AboveGameInProgress = (props) => {
     const currentEpochTime = props.currentEpochTime;
     const timerDisplayed = props.timerDisplayed;
 
+    const scoreItems = [
+        <PercentageCompleted
+            matchedCards={matchedCards}
+        />,
+        <GameScore
+            gameScore={gameScore}
+        />
+    ];
+
+    if (timerDisplayed) {
+        scoreItems.push(
+            <ElapsedTime
+                elapsedMilliseconds={currentEpochTime && gameStartEpochTime ? currentEpochTime - gameStartEpochTime : 0}
+            />
+        );
+    }
+
     return (
         <div id='above-game' className="above-game">
-            <PercentageCompleted
-                matchedCards={matchedCards}
-            />
-            <GameScore
-                gameScore={gameScore}
-            />
+            {scoreItems}
         </div>
     );
 }

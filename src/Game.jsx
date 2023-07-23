@@ -21,6 +21,8 @@ const GameCard = (props) => {
     const setCardFlipCounts = props.setCardFlipCounts;
     const gameScore = props.gameScore;
     const setGameScore = props.setGameScore;
+    const timerId = props.timerId;
+    const setTimerId = props.setTimerId;
 
     const faceUp = cardsFaceUp ? cardsFaceUp[cardIndex] : false;
     const imageId = imageIdsForCards ? imageIdsForCards[cardIndex] : null;
@@ -145,6 +147,10 @@ const GameCard = (props) => {
                         setMatchedCards(newMatchedCards);
                         setCardFlipCounts(newCardFlipCounts);
                         setGameScore(newScore);
+                        if (timerId) {
+                            clearInterval(timerId);
+                            setTimerId(null);
+                        }
                         if (gameCompleted) {
                             setGameState('Completed');
                         }
@@ -212,6 +218,8 @@ const GameRow = (props) => {
     const setCardFlipCounts = props.setCardFlipCounts;
     const gameScore = props.gameScore;
     const setGameScore = props.setGameScore;
+    const timerId = props.timerId;
+    const setTimerId = props.setTimerId;
 
     const cards = [];
 
@@ -237,6 +245,8 @@ const GameRow = (props) => {
                              setIdOfLargeImageToView={setIdOfLargeImageToView}
                              gameState={gameState}
                              setGameState={setGameState}
+                             timerId={timerId}
+                             setTimerId={setTimerId}
                    />
         cards.push(card);
         if (i < size - 1) {
@@ -269,6 +279,8 @@ const Game = (props) => {
     const setCardFlipCounts = props.setCardFlipCounts;
     const gameScore = props.gameScore;
     const setGameScore = props.setGameScore;
+    const timerId = props.timerId;
+    const setTimerId = props.setTimerId;
 
 
     const activeCards = props.activeCards;
@@ -299,6 +311,8 @@ const Game = (props) => {
                       setIdOfLargeImageToView={setIdOfLargeImageToView}
                       gameState={gameState}
                       setGameState={setGameState}
+                      timerId={timerId}
+                      setTimerId={setTimerId}
                   />
         rows.push(row)
     }

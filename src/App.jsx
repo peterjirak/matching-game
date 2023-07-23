@@ -137,7 +137,7 @@ const App = () => {
         setGameState('In-Progress');
         setUpCards();
         setGameStartEpochTime(Date.now());
-        const idOfTimer = setTimeout(
+        const idOfTimer = setInterval(
             () => {
                 setCurrentEpochTime(Date.now());
             },
@@ -207,6 +207,8 @@ const App = () => {
                 setIdOfLargeImageToView={setIdOfLargeImageToView}
                 gameState={gameState}
                 setGameState={setGameState}
+                timerId={timerId}
+                setTimerId={setTimerId}
             />
         </div>
     )
