@@ -86,7 +86,7 @@ body {
   background-color: white;
   margin-bottom: 25px;
   box-sizing: border-box;
-  width: 300px;
+  width: 350px;
   height: 106px;
   border-top: 10px solid #AAA8A8;
   border-bottom: 10px solid #AAA8A8;
@@ -106,7 +106,8 @@ body {
   outline: inherit; /* inherit outline from parent */
   border-left: 10px solid #AAA8A8;
   border-right: 10px solid #AAA8A8;
-  width: 85px;
+  box-sizing: border-box;
+  width: 105px;
   height: 86px;
 }
 
@@ -124,6 +125,7 @@ body {
 }
 
 .configure-attribute-title {
+  display: flex;
   font-family: 'Roboto', sans-serif;
   font-size: 28px;
   font-weight: 600;
