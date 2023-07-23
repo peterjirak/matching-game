@@ -6,7 +6,7 @@ const DisplayPlayGamePopup = (props) => {
     return (
         <div id='game-configuration-body' className='display-play-game-popup-container'>
              <p className="play-game-title">The Match Game</p>
-             <button type='button' className='play-game-button-text' onClick={setToSelectCollection}>
+             <button type='button' className='play-game-button-text pale-azure-color' onClick={setToSelectCollection}>
                  Play Game
              </button>
         </div>
@@ -72,9 +72,9 @@ const ConfigureCollection = (props) => {
                 </div>
                 <img className='sample-card' src={cardImgSrc}>
                 </img>
-                <button type='button' className='next-button' onClick={setToSelectSize}>
-                     <p className='next-button-text'>Next</p>
-                     <img className='next-button-chevron-right-img' src='/src/images/application-controls/chevron-right-white.svg'></img>
+                <button type='button' className='prev-next-button pale-azure-color' onClick={setToSelectSize}>
+                     <p className='margin-left-20px prev-prev-next-button-text'>Next</p>
+                     <img className='prev-next-button-chevron-right-img' src='/src/images/application-controls/chevron-right-white.svg'></img>
                 </button>
             </div>
         </div>
@@ -86,6 +86,7 @@ const ConfigureSize = (props) => {
     const selectedSize = props.selectedSize;
     const maxSizeByCollection = props.maxSizeByCollection;
     const setSelectedSize = props.setSelectedSize;
+    const setToSelectCollection = props.setToSelectCollection;
     const startGame = props.startGame;
 
     const decreaseSize = () => {
@@ -124,10 +125,17 @@ const ConfigureSize = (props) => {
                 </div>
                 <div className='sample-card'>
                 </div>
-                <button type='button' className='next-button' onClick={startGame}>
-                     <p className='next-button-text'>Start</p>
-                     <img className='next-button-chevron-right-img' src='/src/images/application-controls/chevron-right-white.svg'></img>
-                </button>
+                <div className='button-row-container'>
+                    <button type='button' className='prev-next-button african-violet' onClick={setToSelectCollection}>
+                        <img className='prev-next-button-chevron-right-img left-right-mirror-flip-img' src='/src/images/application-controls/chevron-right-white.svg'></img>
+                        <p className='prev-prev-next-button-text margin-right-20px'>Prev</p>
+                    </button>
+                    <div className='spacer-10px-by-10px'></div>
+                    <button type='button' className='prev-next-button pale-azure-color' onClick={startGame}>
+                        <p className='prev-prev-next-button-text margin-left-20px'>Start</p>
+                        <img className='prev-next-button-chevron-right-img' src='/src/images/application-controls/chevron-right-white.svg'></img>
+                    </button>
+                </div>
             </div>
         </div>
     );
@@ -177,6 +185,7 @@ const GameConfigurationBody = (props) => {
                 maxSizeByCollection={maxSizeByCollection}
                 selectedSize={selectedSize}
                 setSelectedSize={setSelectedSize}
+                setToSelectCollection={setToSelectCollection}
                 startGame={startGame}
             />
         );

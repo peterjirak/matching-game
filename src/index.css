@@ -158,7 +158,6 @@ body {
 .play-game-button {
   display: flex;
   background: none; /* #6ACAF7; */
-  background-color: #6ACAF7;
   color: inherit;
   border: none;
   padding: 0;
@@ -177,7 +176,6 @@ body {
   font-size: 30px;
   font-weight: 600;
   color: white;
-  background-color: #6ACAF7;
   text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
   padding: 10px;
   cursor: pointer;
@@ -185,11 +183,15 @@ body {
   margin-bottom: 30vh;
 }
 
-.next-button {
+.button-row-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.prev-next-button {
   display: flex;
   flex-direction: row;
   align-items: center;
-  background-color: #6ACAF7;
   height: 60px;
   color: inherit;
   border: none;
@@ -204,7 +206,15 @@ body {
   margin-top: 25px;
 }
 
-.next-button-text {
+.pale-azure-color {
+  background-color: #6ACAF7;
+}
+
+.african-violet {
+  background-color: #BD89B5;
+}
+
+.prev-prev-next-button-text {
   display: flex;
   font-family: 'Noto Sans', sans-serif;
   font-size: 30px;
@@ -215,7 +225,19 @@ body {
   cursor: pointer;
   height: 60px;
   box-sizing: border-box;
+}
+
+.spacer-10px-by-10px {
+  width: 25px;
+  height: 10px;
+}
+
+.margin-left-20px {
   margin-left: 20px;
+}
+
+.margin-right-20px {
+  margin-right: 20px;
 }
 
 .size-button-text {
@@ -239,7 +261,7 @@ body {
   padding-bottom: 10px;
 }
 
-.next-button-chevron-right-img {
+.prev-next-button-chevron-right-img {
   display: flex;
   justify-content: center;
   align-items: center;
