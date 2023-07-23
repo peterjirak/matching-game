@@ -63,6 +63,7 @@ const App = () => {
     const [gameScore, setGameScore] = useState(0);
     const [activeCards, setActiveCards] = useState([]);
     const [viewLargeImageId, setIdOfLargeImageToView] = useState(null);
+    const [timerDisplayed, setTimerDisplayed] = useState(false);
 
     // gameStates are:
     //     * 'Not Started'
@@ -147,6 +148,8 @@ const App = () => {
                                      selectedSize={selectedSize}
                                      setSelectedSize={setSelectedSize}
                                      startGame={startGame}
+                                     timerDisplayed={timerDisplayed}
+                                     setTimerDisplayed={setTimerDisplayed}
                                  />
                                  : null;
 

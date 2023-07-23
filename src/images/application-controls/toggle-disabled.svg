@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="90" height="30" viewBox="0 0 90 30">
+  <g id="toggle-disabled" transform="translate(-620 -238)">
+    <g id="toggle-switch-body">
+      <circle id="Ellipse_1" data-name="Ellipse 1" cx="15" cy="15" r="15" transform="translate(620 238)" fill="#fff"/>
+      <circle id="Ellipse_2" data-name="Ellipse 2" cx="15" cy="15" r="15" transform="translate(680 238)" fill="#fff"/>
+      <rect id="Rectangle_2" data-name="Rectangle 2" width="60" height="30" transform="translate(635 238)" fill="#fff"/>
+    </g>
+    <g id="toggle-interior">
+      <circle id="Ellipse_3" data-name="Ellipse 3" cx="10" cy="10" r="10" transform="translate(685 243)" fill="#f95638"/>
+      <rect id="Rectangle_3" data-name="Rectangle 3" width="60" height="20" transform="translate(635 243)" fill="#f95638"/>
+    </g>
+    <circle id="toggle-indicator" cx="10" cy="10" r="10" transform="translate(625 243)" fill="#fff"/>
+  </g>
+</svg>

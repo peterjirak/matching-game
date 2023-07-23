@@ -1,0 +1,12 @@
+<svg id="toggle-enabled" xmlns="http://www.w3.org/2000/svg" width="90" height="30" viewBox="0 0 90 30">
+  <g id="toggle-switch-body">
+    <circle id="Ellipse_1" data-name="Ellipse 1" cx="15" cy="15" r="15" transform="translate(60)" fill="#fff"/>
+    <circle id="Ellipse_2" data-name="Ellipse 2" cx="15" cy="15" r="15" fill="#fff"/>
+    <rect id="Rectangle_2" data-name="Rectangle 2" width="60" height="30" transform="translate(15)" fill="#fff"/>
+  </g>
+  <g id="toggle-interior" transform="translate(5 5)">
+    <circle id="Ellipse_3" data-name="Ellipse 3" cx="10" cy="10" r="10" fill="#39cc4d"/>
+    <rect id="Rectangle_3" data-name="Rectangle 3" width="60" height="20" transform="translate(10)" fill="#39cc4d"/>
+  </g>
+  <circle id="toggle-indicator" cx="10" cy="10" r="10" transform="translate(65 5)" fill="#fff"/>
+</svg>

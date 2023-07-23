@@ -58,7 +58,7 @@ const ConfigureCollection = (props) => {
     return (
         <div id='game-configuration-body' className='display-play-game-popup-container-choose-collection'>
             <div className='game-configuration-container'>
-                <p className='choose-configuration-attribute-prompt'>Choose Collection</p>
+                <p className='choose-configuration-attribute-prompt font-size-42px'>Choose Collection</p>
                 <div className='configure-attribute-selector-container'>
                     <button className='configure-attribute-selector-button' onClick={onLeftChevronButtonClick} type='button'>
                         <img className='configure-collection-selector-chevron-right-img left-right-mirror-flip-img' src='/src/images/application-controls/chevron-right.svg'>
@@ -88,6 +88,8 @@ const ConfigureSize = (props) => {
     const setSelectedSize = props.setSelectedSize;
     const setToSelectCollection = props.setToSelectCollection;
     const startGame = props.startGame;
+    const timerDisplayed = props.timerDisplayed;
+    const setTimerDisplayed = props.setTimerDisplayed;
 
     const decreaseSize = () => {
         setSelectedSize( selectedSize - 2 );
@@ -117,13 +119,18 @@ const ConfigureSize = (props) => {
     return (
         <div id='game-configuration-body' className='display-play-game-popup-container-choose-collection'>
             <div className='game-configuration-container'>
-                <p className='choose-configuration-attribute-prompt'>Choose Size</p>
+                <p className='choose-configuration-attribute-prompt font-size-42px'>Choose Size</p>
                 <div className='configure-attribute-selector-container'>
                     {decreaseSizeControl}
                     <p className="configure-attribute-title">{selectedSize} x {selectedSize}</p>
                     {increaseSizeControl}
                 </div>
                 <div className='sample-card'>
+                    <p className='choose-configuration-attribute-prompt font-size-28px'>{timerDisplayed ? 'Timer Displayed' : 'No Timer'}</p>
+                    <button type='button' className='toggle-button' onClick={() => { timerDisplayed ? setTimerDisplayed(false) : setTimerDisplayed(true) }}>
+                        <img className='toggle-button-img' src={timerDisplayed ? '/src/images/application-controls/toggle-enabled.svg' : '/src/images/application-controls/toggle-disabled.svg'}>
+                        </img>
+                    </button>
                 </div>
                 <div className='button-row-container'>
                     <button type='button' className='prev-next-button african-violet' onClick={setToSelectCollection}>
@@ -153,6 +160,8 @@ const GameConfigurationBody = (props) => {
     const selectedSize = props.selectedSize;
     const setSelectedSize = props.setSelectedSize;
     const startGame = props.startGame;
+    const timerDisplayed = props.timerDisplayed;
+    const setTimerDisplayed = props.setTimerDisplayed;
 
 
     if (gameState === 'Not Started') {
@@ -176,6 +185,8 @@ const GameConfigurationBody = (props) => {
                 selectedSize={selectedSize}
                 setSelectedSize={setSelectedSize}
                 setToSelectSize={setToSelectSize}
+                timerDisplayed={timerDisplayed}
+                setTimerDisplayed={setTimerDisplayed}
             />
         );
     } else {
@@ -187,6 +198,8 @@ const GameConfigurationBody = (props) => {
                 setSelectedSize={setSelectedSize}
                 setToSelectCollection={setToSelectCollection}
                 startGame={startGame}
+                timerDisplayed={timerDisplayed}
+                setTimerDisplayed={setTimerDisplayed}
             />
         );
     }
@@ -204,6 +217,8 @@ const ConfigureGame = (props) => {
     const selectedSize = props.selectedSize;
     const setSelectedSize = props.setSelectedSize;
     const startGame = props.startGame;
+    const timerDisplayed = props.timerDisplayed;
+    const setTimerDisplayed = props.setTimerDisplayed;
 
     const className = gameState === 'Not Started' ? 'configure-game-container' : 'configure-game-container-choose-collection';
 
@@ -221,6 +236,8 @@ const ConfigureGame = (props) => {
                 selectedSize={selectedSize}
                 setSelectedSize={setSelectedSize}
                 startGame={startGame}
+                timerDisplayed={timerDisplayed}
+                setTimerDisplayed={setTimerDisplayed}
             />
         </div>
     );
