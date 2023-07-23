@@ -4,9 +4,20 @@ const DisplayPlayGamePopup = (props) => {
     const setToSelectCollection = props.setToSelectCollection;
 
     return (
-        <div id='game-configuration-body' className='display-play-game-popup-container'>
-             <p className="play-game-title">The Match Game</p>
-             <button type='button' className='play-game-button-text pale-azure-color' onClick={setToSelectCollection}>
+        <div key='game-configuration-body'
+             id='game-configuration-body'
+             className='display-play-game-popup-container'
+        >
+             <p key='play-game-title'
+                className="play-game-title"
+            >
+                The Match Game
+            </p>
+             <button key='play-game-button'
+                     type='button'
+                     className='play-game-button-text pale-azure-color'
+                     onClick={setToSelectCollection}
+             >
                  Play Game
              </button>
         </div>
@@ -56,25 +67,69 @@ const ConfigureCollection = (props) => {
     }
 
     return (
-        <div id='game-configuration-body' className='display-play-game-popup-container-choose-collection'>
-            <div className='game-configuration-container'>
-                <p className='choose-configuration-attribute-prompt font-size-42px'>Choose Collection</p>
-                <div className='configure-attribute-selector-container'>
-                    <button className='configure-attribute-selector-button' onClick={onLeftChevronButtonClick} type='button'>
-                        <img className='configure-collection-selector-chevron-right-img left-right-mirror-flip-img' src='/src/images/application-controls/chevron-right.svg'>
+        <div key='game-configuration-body'
+             id='game-configuration-body'
+             className='display-play-game-popup-container-choose-collection'
+        >
+            <div key='game-configuration-container'
+                 className='game-configuration-container'
+            >
+                <p key='choose-configuration-attribute-prompt'
+                   className='choose-configuration-attribute-prompt font-size-42px'
+                >
+                    Choose Collection
+                </p>
+                <div key='configure-attribute-selector-container'
+                     className='configure-attribute-selector-container'
+                >
+                    <button key='configure-attribute-selector-button-left'
+                            className='configure-attribute-selector-button'
+                            onClick={onLeftChevronButtonClick}
+                            type='button'
+                    >
+                        <img key='configure-collection-selector-chevron-left-img'
+                             className='configure-collection-selector-chevron-right-img left-right-mirror-flip-img'
+                             src='/src/images/application-controls/chevron-right.svg'
+                        >
                         </img>
                     </button>
-                    <p className="configure-attribute-title">{collection}</p>
-                    <button className='configure-attribute-selector-button' onClick={onRightChevronButtonClick} type='button'>
-                        <img className='configure-collection-selector-chevron-right-img' src='/src/images/application-controls/chevron-right.svg'>
+                    <p key='configure-attribute-title'
+                       className="configure-attribute-title"
+                    >
+                        {collection}
+                    </p>
+                    <button key='configure-attribute-selector-button-right'
+                            className='configure-attribute-selector-button'
+                            onClick={onRightChevronButtonClick}
+                            type='button'
+                    >
+                        <img ley='configure-collection-selector-chevron-right-img'
+                             className='configure-collection-selector-chevron-right-img'
+                             src='/src/images/application-controls/chevron-right.svg'
+                        >
                         </img>
                     </button>
                 </div>
-                <img className='sample-card' src={cardImgSrc}>
+                <img key='sample-card-img'
+                     className='sample-card'
+                     src={cardImgSrc}
+                >
                 </img>
-                <button type='button' className='prev-next-button pale-azure-color' onClick={setToSelectSize}>
-                     <p className='margin-left-20px prev-prev-next-button-text'>Next</p>
-                     <img className='prev-next-button-chevron-right-img' src='/src/images/application-controls/chevron-right-white.svg'></img>
+                <button key='configure-attribute-selector-button-right'
+                        type='button'
+                        className='prev-next-button pale-azure-color'
+                        onClick={setToSelectSize}
+                >
+                     <p key='next-button-text'
+                        className='margin-left-20px prev-prev-next-button-text'
+                    >
+                        Next
+                    </p>
+                    <img key='next-button-chevron-right-img'
+                         className='prev-next-button-chevron-right-img'
+                         src='/src/images/application-controls/chevron-right-white.svg'
+                    >
+                    </img>
                 </button>
             </div>
         </div>
@@ -100,47 +155,130 @@ const ConfigureSize = (props) => {
     }
 
     const decreaseSizeControl = selectedSize <= 4 ?
-                                    <div className='configure-attribute-selector-button'>
-                                        <p className='size-button-text size-text-padding size-button-text-disabled'>-</p>
+                                    <div key='decrease-size-button'
+                                         className='configure-attribute-selector-button'
+                                    >
+                                        <p key='decrease-size-button-minus-sign'
+                                           className='size-button-text size-text-padding size-button-text-disabled'
+                                        >
+                                            -
+                                        </p>
                                     </div> :
-                                    <button className='configure-attribute-selector-button' type='button' onClick={decreaseSize}>
-                                        <p className='size-button-text size-text-padding size-button-text-enabled'>-</p>
+                                    <button key='decrease-size-button'
+                                            className='configure-attribute-selector-button'
+                                            type='button'
+                                            onClick={decreaseSize}
+                                    >
+                                        <p key='decrease-size-button-minus-sign'
+                                           className='size-button-text size-text-padding size-button-text-enabled'
+                                        >
+                                            -
+                                        </p>
                                     </button>
 
     const increaseSizeControl = selectedSize < maxSizeByCollection[collection] ?
-                                    <button className='configure-attribute-selector-button' onClick={increaseSelectedSize}>
-                                        <p className='size-button-text size-button-text-enabled'>+</p>
+                                    <button key='increase-size-button'
+                                            className='configure-attribute-selector-button'
+                                            onClick={increaseSelectedSize}
+                                    >
+                                        <p key='increase-size-button-plus-sign'
+                                           className='size-button-text size-button-text-enabled'
+                                        >
+                                            +
+                                        </p>
                                     </button> :
-                                    <div className='configure-attribute-selector-button' type='button'>
-                                        <p className='size-button-text size-button-text-disabled'>+</p>
+                                    <div id='increase-size-button'
+                                         className='configure-attribute-selector-button'
+                                         type='button'
+                                    >
+                                        <p key='increase-size-button-plus-sign'
+                                           className='size-button-text size-button-text-disabled'>
+                                            +
+                                        </p>
                                     </div>
 
 
     return (
-        <div id='game-configuration-body' className='display-play-game-popup-container-choose-collection'>
-            <div className='game-configuration-container'>
-                <p className='choose-configuration-attribute-prompt font-size-42px'>Choose Size</p>
-                <div className='configure-attribute-selector-container'>
+        <div key='game-configuration-body'
+             id='game-configuration-body'
+             className='display-play-game-popup-container-choose-collection'
+        >
+            <div key='game-configuration-container'
+                 className='game-configuration-container'
+            >
+                <p key='choose-board-size-text'
+                   className='choose-configuration-attribute-prompt font-size-42px'
+                >
+                    Choose Size
+                </p>
+                <div key='configure-size-selector-container'
+                     className='configure-attribute-selector-container'
+                >
                     {decreaseSizeControl}
-                    <p className="configure-attribute-title">{selectedSize} x {selectedSize}</p>
+                    <p key='configure-size-selector-title'
+                       className="configure-attribute-title"
+                    >
+                        {selectedSize} x {selectedSize}
+                    </p>
                     {increaseSizeControl}
                 </div>
-                <div className='sample-card'>
-                    <p className='choose-configuration-attribute-prompt font-size-28px'>{timerDisplayed ? 'Timer Displayed' : 'No Timer'}</p>
-                    <button type='button' className='toggle-button' onClick={() => { timerDisplayed ? setTimerDisplayed(false) : setTimerDisplayed(true) }}>
-                        <img className='toggle-button-img' src={timerDisplayed ? '/src/images/application-controls/toggle-enabled.svg' : '/src/images/application-controls/toggle-disabled.svg'}>
+                <div key='configure-game-settings-container'
+                     className='sample-card'
+                >
+                    <p key='display-timer-title'
+                       className='choose-configuration-attribute-prompt font-size-28px'
+                    >
+                        {timerDisplayed ? 'Timer Displayed' : 'No Timer'}
+                    </p>
+                    <button key='toggle-display-timer-button'
+                            type='button'
+                            className='toggle-button'
+                            onClick={() => { timerDisplayed ? setTimerDisplayed(false) : setTimerDisplayed(true) }}
+                    >
+                        <img key='toggle-display-timer-img'
+                             className='toggle-button-img'
+                             src={timerDisplayed ? '/src/images/application-controls/toggle-enabled.svg' : '/src/images/application-controls/toggle-disabled.svg'}
+                        >
                         </img>
                     </button>
                 </div>
-                <div className='button-row-container'>
-                    <button type='button' className='prev-next-button african-violet' onClick={setToSelectCollection}>
-                        <img className='prev-next-button-chevron-right-img left-right-mirror-flip-img' src='/src/images/application-controls/chevron-right-white.svg'></img>
-                        <p className='prev-prev-next-button-text margin-right-20px'>Prev</p>
+                <div key='prev-next-row-container'
+                     className='button-row-container'
+                >
+                    <button key='prev-button'
+                            type='button'
+                            className='prev-next-button african-violet'
+                            onClick={setToSelectCollection}
+                    >
+                        <img key='left-chevron-button-img'
+                             className='prev-next-button-chevron-right-img left-right-mirror-flip-img'
+                             src='/src/images/application-controls/chevron-right-white.svg'
+                        >
+                        </img>
+                        <p key='prev-label-text'
+                           className='prev-prev-next-button-text margin-right-20px'>
+                            Prev
+                        </p>
                     </button>
-                    <div className='spacer-10px-by-10px'></div>
-                    <button type='button' className='prev-next-button pale-azure-color' onClick={startGame}>
-                        <p className='prev-prev-next-button-text margin-left-20px'>Start</p>
-                        <img className='prev-next-button-chevron-right-img' src='/src/images/application-controls/chevron-right-white.svg'></img>
+                    <div key='spacer-10px-by-10px'
+                         className='spacer-10px-by-10px'>
+                    </div>
+                    <button key='start-game-button'
+                            type='button'
+                            className='prev-next-button pale-azure-color'
+                            onClick={startGame}
+                    >
+                        <p
+                           key='start-game-button-text'
+                           className='prev-prev-next-button-text margin-left-20px'
+                        >
+                            Start
+                        </p>
+                        <img key='right-chevron-button-img'
+                             className='prev-next-button-chevron-right-img'
+                             src='/src/images/application-controls/chevron-right-white.svg'
+                        >
+                        </img>
                     </button>
                 </div>
             </div>

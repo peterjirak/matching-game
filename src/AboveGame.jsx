@@ -13,13 +13,27 @@ const AboveGameNotStarted = (props) => {
     const setCollectionSelectorOpen = props.setCollectionSelectorOpen; 
 
     return (
-        <div id='above-game' className="above-game">
-            <div className="above-game-left">
+        <div key='above-game'
+             id='above-game'
+             className="above-game"
+        >
+            <div key='above-game-left'
+                 id='above-game-left'
+                 className="above-game-left"
+            >
             </div>
-            <div className="above-game-middle">
-                <p className="game-title">&nbsp;</p>
+            <div key='above-game-middle'
+                 className="above-game-middle"
+            >
+                <p key="game-title"
+                   className="game-title"
+                >
+                    &nbsp;
+                </p>
             </div>
-            <div className="above-game-right">
+            <div key='above-game-right'
+                 className="above-game-right"
+            >
             </div>
         </div>
     );
@@ -40,11 +54,20 @@ const ElapsedTime = (props) => {
     }
 
     return (
-        <div className='elapsed-time-attribute-with-label'>
-            <div className='elapsed-time-attribute-container'>
-                <p className='elapsed-time-completed-text'>{elapsedMinutes}:{elapsedSeconds}</p>
+        <div key='elapsed-time-attribute-with-label'
+             className='elapsed-time-attribute-with-label'
+        >
+            <div key='elapsed-time-attribute-container'
+                 className='elapsed-time-attribute-container'>
+                <p key='elapsed-time-completed-text'
+                   className='elapsed-time-completed-text'>
+                    {elapsedMinutes}:{elapsedSeconds}
+                </p>
             </div>
-            <div><p className='elapsed-time-completed-label-text'>Elapsed Time</p></div>
+            <p key='elapsed-time-completed-label-text'
+               className='elapsed-time-completed-label-text'>
+                Elapsed Time
+            </p>
         </div>
     );
 }
@@ -53,14 +76,60 @@ const GameScore = (props) => {
     const gameScore = props.gameScore;
 
     return (
-        <div className='score-attribute-with-label'>
-            <div className='score-attribute-container'>
-                <p className='score-completed-text'>{gameScore}</p>
+        <div key='score-attribute-with-label'
+             className='score-attribute-with-label'
+        >
+            <div key='score-attribute-container'
+                 className='score-attribute-container'
+            >
+                <p key='score-completed-text'
+                   className='score-completed-text'
+                >
+                    {gameScore}
+                </p>
             </div>
-            <p className='score-completed-label-text'>Score</p>
+            <p key='score-completed-label-text'
+               className='score-completed-label-text'>
+                Score
+            </p>
         </div>
     );
 }
+
+const FlipCount = (props) => {
+    const cardFlipCounts = props.cardFlipCounts;
+
+    let flipCount = 0;
+
+    if (cardFlipCounts) {
+        for (const count of cardFlipCounts) {
+            if (!count) {
+                continue;
+            }
+            flipCount += count;
+        }
+    }
+
+    return (
+        <div key='flip-count-attribute-with-label'
+             className='flip-count-attribute-with-label'
+        >
+            <div key='flip-count-attribute-container'
+                 className='flip-count-attribute-container'
+            >
+                <p key='flip-count-completed-text'
+                   className='flip-count-completed-text'>
+                    {flipCount}
+                </p>
+            </div>
+            <p key='flip-count-completed-label-text'
+               className='flip-count-completed-label-text'
+            >
+                Flip Count
+            </p>
+        </div>
+    );
+} 
 
 const PercentageCompleted = (props) => {
     const matchedCards = props.matchedCards;
@@ -76,16 +145,27 @@ const PercentageCompleted = (props) => {
     }
 
     return (
-        <div className='percent-completed-attribute-with-label'>
-            <div className='percent-attribute-container'>
-                <p className='percentage-completed-text'>{percentCompleted} %</p>
+        <div key='percent-completed-attribute-with-label'
+             className='percent-completed-attribute-with-label'
+        >
+            <div key='percent-attribute-container'
+                 className='percent-attribute-container'
+            >
+                <p key='percentage-completed-text'
+                   className='percentage-completed-text'>
+                    {percentCompleted} %
+                </p>
             </div>
-            <p className='percentage-completed-label-text'>Percent Completed</p>
+            <p key='percentage-completed-label-text'
+               className='percentage-completed-label-text'>
+                Percent Completed
+            </p>
         </div>
     );
 }
 
 const AboveGameInProgress = (props) => {
+    const cardFlipCounts = props.cardFlipCounts;
     const gameScore = props.gameScore;
     const matchedCards = props.matchedCards;
     const selectedSize = props.selectedSize;
@@ -93,9 +173,13 @@ const AboveGameInProgress = (props) => {
     const currentEpochTime = props.currentEpochTime;
     const timerDisplayed = props.timerDisplayed;
 
+
     const scoreItems = [
         <PercentageCompleted
             matchedCards={matchedCards}
+        />,
+        <FlipCount
+            cardFlipCounts={cardFlipCounts}
         />,
         <GameScore
             gameScore={gameScore}
@@ -111,7 +195,7 @@ const AboveGameInProgress = (props) => {
     }
 
     return (
-        <div id='above-game' className="above-game">
+        <div key='above-game' id='above-game' className="above-game">
             {scoreItems}
         </div>
     );
@@ -122,6 +206,7 @@ const AboveGame = (props) => {
     const collection = props.collection;
     const setCollection = props.setCollection;
     const collectionDimensions = props.collectionDimensions;
+    const cardFlipCounts = props.cardFlipCounts;
     const gameScore = props.gameScore;
     const matchedCards = props.matchedCards;
     const gameStartEpochTime = props.gameStartEpochTime;
@@ -152,6 +237,7 @@ const AboveGame = (props) => {
     } else {
         return (
             <AboveGameInProgress
+                cardFlipCounts={cardFlipCounts}
                 gameScore={gameScore}
                 matchedCards={matchedCards}
                 selectedSize={selectedSize}

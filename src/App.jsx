@@ -165,7 +165,9 @@ const App = () => {
                                  : null;
 
     return (
-        <div id="app-container" className="app-container">
+        <div key='app-container'
+             id="app-container"
+             className="app-container">
             {configureGameElement}
             <LargeImageViewer
                 imageId={viewLargeImageId}
@@ -177,6 +179,7 @@ const App = () => {
                 collection={collection}
                 setCollection={setCollection}
                 collectionDimensions={collectionDimensions}
+                cardFlipCounts={cardFlipCounts}
                 gameScore={gameScore}
                 matchedCards={matchedCards}
                 gameStartEpochTime={gameStartEpochTime}

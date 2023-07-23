@@ -194,7 +194,7 @@ const GameCard = (props) => {
     const cardClassNames = 'game-card' + ( faceUp ? ' game-card-face-up' : '' );
 
     return (
-        <img id={`card-${cardIndex}`} className={cardClassNames} src={src} onClick={onClick}>
+        <img key={`card-${cardIndex}`} id={`card-${cardIndex}`} className={cardClassNames} src={src} onClick={onClick}>
         </img>
     );
 }
@@ -250,17 +250,17 @@ const GameRow = (props) => {
                    />
         cards.push(card);
         if (i < size - 1) {
-            let cardSpacer = <div className='card-spacer'></div>
+            let cardSpacer = <div key={`card-spacer-${i}`} className='card-spacer'></div>
             cards.push(cardSpacer);
         }
     }
 
     return (
         <>
-            <div id={`game-row-${rowIndex}`} className='game-row'>
+            <div key={`game-row-${rowIndex}`} id={`game-row-${rowIndex}`} className='game-row'>
                 {cards}
             </div>
-            <div className='row-spacer'>
+            <div key={`row-spacer-${rowIndex}`} className='row-spacer'>
             </div>
         </>
     );
@@ -318,7 +318,7 @@ const Game = (props) => {
     }
 
     return (
-        <div id='game-board' className="game-board">
+        <div key='game-board' id='game-board' className="game-board">
             {rows}
         </div>
     );
