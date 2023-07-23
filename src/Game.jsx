@@ -147,11 +147,11 @@ const GameCard = (props) => {
                         setMatchedCards(newMatchedCards);
                         setCardFlipCounts(newCardFlipCounts);
                         setGameScore(newScore);
-                        if (timerId) {
-                            clearInterval(timerId);
-                            setTimerId(null);
-                        }
                         if (gameCompleted) {
+                            if (timerId) {
+                                clearInterval(timerId);
+                                setTimerId(null);
+                            }    
                             setGameState('Completed');
                         }
                     } else {
