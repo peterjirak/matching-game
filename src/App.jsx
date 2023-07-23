@@ -64,6 +64,9 @@ const App = () => {
     const [activeCards, setActiveCards] = useState([]);
     const [viewLargeImageId, setIdOfLargeImageToView] = useState(null);
     const [timerDisplayed, setTimerDisplayed] = useState(false);
+    const [gameStartEpochTime, setGameStartEpochTime] = useState(null);
+    const [currentEpochTime, setCurrentEpochTime] = useState(null);
+    const [timerId, setTimerId] = useState(null);
 
     // gameStates are:
     //     * 'Not Started'
@@ -133,6 +136,14 @@ const App = () => {
     const startGame = () => {
         setGameState('In-Progress');
         setUpCards();
+        setGameStartEpochTime(Date.now());
+        const idOfTimer = setTimeout(
+            () => {
+                setCurrentEpochTime(Date.now());
+            },
+            1000
+        );
+        setTimerId(idOfTimer);
     }
 
     const configureGameElement = gameState === 'Not Started' || gameState === 'Select Collection' || gameState === 'Select Size' ?
@@ -166,6 +177,11 @@ const App = () => {
                 collection={collection}
                 setCollection={setCollection}
                 collectionDimensions={collectionDimensions}
+                gameScore={gameScore}
+                matchedCards={matchedCards}
+                gameStartEpochTime={gameStartEpochTime}
+                currentEpochTime={currentEpochTime}
+                timerDisplayed={timerDisplayed}
                 selectedSize={selectedSize}
                 setSelectedSize={setSelectedSize}
                 dimensionSelectorOpen={dimensionSelectorOpen}

@@ -315,7 +315,7 @@ body {
 .above-game {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   width: 100vw;
   height: 121px;
@@ -561,4 +561,77 @@ body {
   width: 1px;
   box-sizing: border-box;
   cursor: zoom-out;
+}
+
+.percent-attribute-container {
+  display: flex;
+  border: 5px solid #AAA8A8;
+  background-color: #FFFFFF;
+  box-sizing: border-box;
+  padding: 10px;
+}
+
+.percent-completed-attribute-with-label {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.percentage-completed-label-text {
+  display: flex;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: black;
+}
+
+.percentage-completed-text {
+  display: flex;
+  font-family: 'Roboto', sans-serif;
+  font-size: 28px;
+  font-weight: 600;
+  color: black;
+  background-color: white;
+  text-align: center;
+  vertical-align: middle;
+  margin: 0;
+}
+
+.score-attribute-with-label {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 20px;
+  margin-left: 40px;
+}
+
+.score-attribute-container {
+  display: flex;
+  border: 5px solid #AAA8A8;
+  background-color: #FFFFFF;
+  box-sizing: border-box;
+  padding: 10px;
+}
+
+.score-completed-text {
+  display: flex;
+  font-family: 'Roboto', sans-serif;
+  font-size: 28px;
+  font-weight: 600;
+  color: black;
+  background-color: white;
+  text-align: center;
+  vertical-align: middle;
+  margin: 0;
+}
+
+.score-completed-label-text {
+  display: flex;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: black;
 }
