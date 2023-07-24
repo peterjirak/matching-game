@@ -42,15 +42,6 @@ const maxSizeByCollection = {
     'A Spring Celebration': 12
 };
 
-const collectionDimensions = {
-    'A Spring Celebration': '"4 x 4", "6 x 6", "8 x 8", "10 x 10", "12 x 12"',
-    'Fairies': '"4 x 4", "6 x 6", "8 x 8", "10 x 10", "12 x 12"',
-    'Humanity in Space': '"4 x 4", "6 x 6", "8 x 8", "10 x 10"',
-    'People with Cats': '"4 x 4", "6 x 6", "8 x 8", "10 x 10", "12 x 12"',
-    'People with Dogs': '"4 x 4", "6 x 6", "8 x 8", "10 x 10"',
-    'Super Heroes': '"4 x 4", "6 x 6", "8 x 8", "10 x 10"'
-}
-
 const App = () => {
     const [dimensionSelectorOpen, setDimensionSelectorOpen] = useState(false);
     const [selectedSize, setSelectedSize] = useState(4);
@@ -178,7 +169,6 @@ const App = () => {
                 gameState={gameState}
                 collection={collection}
                 setCollection={setCollection}
-                collectionDimensions={collectionDimensions}
                 cardFlipCounts={cardFlipCounts}
                 gameScore={gameScore}
                 matchedCards={matchedCards}

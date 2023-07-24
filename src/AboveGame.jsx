@@ -4,7 +4,6 @@ import DropdownSingleItemSelector from './DropdownSingleItemSelector';
 const AboveGameNotStarted = (props) => {
     const collection = props.collection;
     const setCollection = props.setCollection;
-    const collectionDimensions = props.collectionDimensions;
     const selectedSize = props.selectedSize;
     const setSelectedSize = props.setSelectedSize;
     const dimensionSelectorOpen = props.dimensionSelectorOpen;
@@ -205,7 +204,6 @@ const AboveGame = (props) => {
     const gameState = props.gameState;
     const collection = props.collection;
     const setCollection = props.setCollection;
-    const collectionDimensions = props.collectionDimensions;
     const cardFlipCounts = props.cardFlipCounts;
     const gameScore = props.gameScore;
     const matchedCards = props.matchedCards;
@@ -224,7 +222,6 @@ const AboveGame = (props) => {
             <AboveGameNotStarted
                 collection={collection}
                 setCollection={setCollection}
-                collectionDimensions={collectionDimensions}
                 selectedSize={selectedSize}
                 setSelectedSize={setSelectedSize}
                 dimensionSelectorOpen={dimensionSelectorOpen}
