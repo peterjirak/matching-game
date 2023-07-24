@@ -194,7 +194,7 @@ const GameCard = (props) => {
     const cardClassNames = 'game-card' + ( faceUp ? ' game-card-face-up' : '' );
 
     return (
-        <img key={`card-${cardIndex}`} id={`card-${cardIndex}`} className={cardClassNames} src={src} onClick={onClick}>
+        <img key={`card-${cardIndex}`} id={`card-${cardIndex}`} className={cardClassNames} src={src} onClick={onClick} draggable='false'>
         </img>
     );
 }
