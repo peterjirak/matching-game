@@ -12,7 +12,8 @@ const collections = [
     'Humanity in Space',
     'People with Cats',
     'People with Dogs',
-    'A Spring Celebration'
+    'A Spring Celebration',
+    'Animal Friends'
 ];
 
 const sampleCards = {
@@ -21,7 +22,8 @@ const sampleCards = {
     'Humanity in Space': 9,
     'People with Cats': 7,
     'People with Dogs': 20,
-    'A Spring Celebration': 25
+    'A Spring Celebration': 25,
+    'Animal Friends': 81
 };
 
 const cardCounts = {
@@ -30,7 +32,8 @@ const cardCounts = {
     'People with Cats': 98,
     'People with Dogs': 63,
     'Super Heroes': 65,
-    'A Spring Celebration': 103
+    'A Spring Celebration': 103,
+    'Animal Friends': 124
 };
 
 const maxSizeByCollection = {
@@ -39,7 +42,8 @@ const maxSizeByCollection = {
     'People with Cats': 12,
     'People with Dogs': 10,
     'Super Heroes': 10,
-    'A Spring Celebration': 12
+    'A Spring Celebration': 12,
+    'Animal Friends': 124
 };
 
 const App = () => {
