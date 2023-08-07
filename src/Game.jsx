@@ -1,7 +1,6 @@
 import { useLayoutEffect } from 'react';
 import cardBack from './images/game-images/card-back.png';
 import { pointsForMatch } from './js/gameUtilities';
-import { isPending } from '@reduxjs/toolkit';
 
 const GameCard = (props) => {
     const size = props.size;
