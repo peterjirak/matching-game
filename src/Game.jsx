@@ -1,5 +1,6 @@
 import { useLayoutEffect } from 'react';
 import cardBack from './images/game-images/card-back.png';
+import { pointsForMatch } from './js/gameUtilities';
 import { isPending } from '@reduxjs/toolkit';
 
 const GameCard = (props) => {
@@ -127,13 +128,7 @@ const GameCard = (props) => {
                         newCardFlipCounts[cardIndex] += 1;
                         const activeCardFlipCounts = newCardFlipCounts[activeCardIndex];
                         const thisCardFlipCounts = newCardFlipCounts[cardIndex];
-                        const scoreMultiplier = size <= 4  ? 1 :
-                                                size <= 6  ? 2 :
-                                                size <= 8  ? 3 :
-                                                size <= 10 ? 4 :
-                                                             5;
-                        let matchPoints = ( 20 * scoreMultiplier ) - activeCardFlipCounts - thisCardFlipCounts + 3;
-                        matchPoints = matchPoints > ( 20 * scoreMultiplier ) ? ( 20 * scoreMultiplier ) : matchPoints < 1 ? 1 : matchPoints;
+                        const matchPoints = pointsForMatch(size, activeCardFlipCounts, thisCardFlipCounts);
                         const newScore = ( gameScore || 0 ) + matchPoints;
                         let gameCompleted = true;
                         for (let cardImageId of newMatchedCards) {
