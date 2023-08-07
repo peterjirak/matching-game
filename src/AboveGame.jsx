@@ -124,11 +124,47 @@ const FlipCount = (props) => {
             <p key='flip-count-completed-label-text'
                className='flip-count-completed-label-text'
             >
-                Flip Count
+                Flips
             </p>
         </div>
     );
-} 
+}
+
+const ExtraFlipCount = (props) => {
+    const cardFlipCounts = props.cardFlipCounts;
+
+    let extraFlipCount = 0;
+
+    if (cardFlipCounts) {
+        for (const count of cardFlipCounts) {
+            if (!count) {
+                continue;
+            } else if (count > 2) {
+                extraFlipCount += count - 2;
+            }
+        }
+    }
+
+    return (
+        <div key='extra-flip-count-attribute-with-label'
+             className='flip-count-attribute-with-label'
+        >
+            <div key='extra-flip-count-attribute-container'
+                 className='flip-count-attribute-container'
+            >
+                <p key='extra-flip-count-completed-text'
+                   className='flip-count-completed-text'>
+                    {extraFlipCount}
+                </p>
+            </div>
+            <p key='extra-flip-count-completed-label-text'
+               className='flip-count-completed-label-text'
+            >
+                Extra Flips
+            </p>
+        </div>
+    );
+}
 
 const PercentageCompleted = (props) => {
     const matchedCards = props.matchedCards;
@@ -178,6 +214,9 @@ const AboveGameInProgress = (props) => {
             matchedCards={matchedCards}
         />,
         <FlipCount
+            cardFlipCounts={cardFlipCounts}
+        />,
+        <ExtraFlipCount
             cardFlipCounts={cardFlipCounts}
         />,
         <GameScore

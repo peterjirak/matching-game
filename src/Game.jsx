@@ -19,8 +19,6 @@ const GameCard = (props) => {
     const setGameState = props.setGameState;
     const cardFlipCounts = props.cardFlipCounts;
     const setCardFlipCounts = props.setCardFlipCounts;
-    const extraCardFlipCounts = props.extraCardFlipCounts;
-    const setExtraCardFlipCounts = props.setExtraCardFlipCounts;
     const gameScore = props.gameScore;
     const setGameScore = props.setGameScore;
     const timerId = props.timerId;
@@ -78,17 +76,6 @@ const GameCard = (props) => {
                     const newCardFlipCount = cardFlipCounts ? cardFlipCounts[cardIndex] + 1 : 1;
                     const newCardFlipCounts = cardFlipCounts ? [...cardFlipCounts] : new Array(size * size).fill(0);
                     newCardFlipCounts[cardIndex] = newCardFlipCount;
-
-                    if (newCardFlipCount > 1) {
-                        // A card need only be flipped once to reveal what is on
-                        // it and a second time to match it.
-                        //
-                        // This card was already flipped once. This flip did mot
-                        // match it (since there was no active card in the set
-                        // of active cards), so this was an extra card flip.
-                        // increment the set of extra card flips.
-                        setExtraCardFlipCounts(extraCardFlipCounts + 1);
-                    }
 
                     // Put the card into the set of active cards:
                     const newActiveCards = [ cardIndex ];
@@ -154,17 +141,6 @@ const GameCard = (props) => {
                         const matchPoints = pointsForMatch(size, activeCardFlipCounts, thisCardFlipCounts);
                         const newScore = ( gameScore || 0 ) + matchPoints;
 
-                        // A card needs to be flipped at most twice, once to
-                        // reveal and once to match. When there were no active
-                        // cards, we did not know if the previous flip was extra
-                        // or not. Now there are two (matching) face up cards so
-                        // we can determine if the previous flip was extra or
-                        // not. We can also determine if this flip was extra or
-                        // not.
-                        let extraFlipsToTrack = activeCardFlipCounts > 2 ? 1 : 0;
-                        extraFlipsToTrack += thisCardFlipCounts > 2 ? 1 : 0;
-                        const newExtraCardFlipCounts = extraCardFlipCounts + extraFlipsToTrack;
-
                         let gameCompleted = true;
                         for (let cardImageId of newMatchedCards) {
                             if (!cardImageId) {
@@ -179,7 +155,6 @@ const GameCard = (props) => {
                         setMatchedCards(newMatchedCards);
                         setCardsFaceUp(newCardsFaceUp);
                         setCardFlipCounts(newCardFlipCounts);
-                        setExtraCardFlipCounts(newExtraCardFlipCounts);
                         setGameScore(newScore);
                         setActiveCards(newActiveCards);
                         if (gameCompleted) {
@@ -201,21 +176,9 @@ const GameCard = (props) => {
                         const activeCardFlipCounts = newCardFlipCounts[activeCardIndex];
                         const thisCardFlipCounts = newCardFlipCounts[cardIndex];
 
-                        // A card needs to be flipped at most twice, once to
-                        // reveal and once to match. When there were no active
-                        // cards, we did not know if the previous flip was extra
-                        // or not. Now there are two (matching) face up cards so
-                        // we can determine if the previous flip was extra or
-                        // not. We can also determine if this flip was extra or
-                        // not.
-                        let extraFlipsToTrack = activeCardFlipCounts > 2 ? 1 : 0;
-                        extraFlipsToTrack += thisCardFlipCounts > 2 ? 1 : 0;
-                        const newExtraCardFlipCounts = extraCardFlipCounts + extraFlipsToTrack;
-
                         setActiveCards(newActiveCards);
                         setCardsFaceUp(newCardsFaceUp);
                         setCardFlipCounts(newCardFlipCounts);
-                        setExtraCardFlipCounts(newExtraCardFlipCounts);
                     }
                 }
             }
@@ -258,8 +221,6 @@ const GameRow = (props) => {
     const gameState = props.gameState;
     const setGameState = props.setGameState;
     const cardFlipCounts = props.cardFlipCounts;
-    const extraCardFlipCounts = props.extraCardFlipCounts;
-    const setExtraCardFlipCounts = props.setExtraCardFlipCounts;
     const setCardFlipCounts = props.setCardFlipCounts;
     const gameScore = props.gameScore;
     const setGameScore = props.setGameScore;
@@ -283,8 +244,6 @@ const GameRow = (props) => {
                              setMatchedCards={setMatchedCards}
                              cardFlipCounts={cardFlipCounts}
                              setCardFlipCounts={setCardFlipCounts}
-                             extraCardFlipCounts={extraCardFlipCounts}
-                             setExtraCardFlipCounts={setExtraCardFlipCounts}
                              gameScore={gameScore}
                              setGameScore={setGameScore}
                              activeCards={activeCards}
@@ -324,8 +283,6 @@ const Game = (props) => {
     const setMatchedCards = props.setMatchedCards;
     const cardFlipCounts = props.cardFlipCounts;
     const setCardFlipCounts = props.setCardFlipCounts;
-    const extraCardFlipCounts = props.extraCardFlipCounts;
-    const setExtraCardFlipCounts = props.setExtraCardFlipCounts;
     const gameScore = props.gameScore;
     const setGameScore = props.setGameScore;
     const timerId = props.timerId;
@@ -353,8 +310,6 @@ const Game = (props) => {
                       setMatchedCards={setMatchedCards}
                       cardFlipCounts={cardFlipCounts}
                       setCardFlipCounts={setCardFlipCounts}
-                      extraCardFlipCounts={extraCardFlipCounts}
-                      setExtraCardFlipCounts={setExtraCardFlipCounts}
                       gameScore={gameScore}
                       setGameScore={setGameScore}
                       activeCards={activeCards}
