@@ -55,6 +55,7 @@ const App = () => {
     const [cardsFaceUp, setCardsFaceUp] = useState(null);
     const [matchedCards, setMatchedCards] = useState(null);
     const [cardFlipCounts, setCardFlipCounts] = useState(null);
+    const [extraCardFlipCounts, setExtraCardFlipCounts] = useState(0);
     const [gameScore, setGameScore] = useState(0);
     const [activeCards, setActiveCards] = useState([]);
     const [viewLargeImageId, setIdOfLargeImageToView] = useState(null);
@@ -197,6 +198,8 @@ const App = () => {
                 setMatchedCards={setMatchedCards}
                 cardFlipCounts={cardFlipCounts}
                 setCardFlipCounts={setCardFlipCounts}
+                extraCardFlipCounts={extraCardFlipCounts}
+                setExtraCardFlipCounts={setExtraCardFlipCounts}
                 gameScore={gameScore}
                 setGameScore={setGameScore}
                 activeCards={activeCards}

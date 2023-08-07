@@ -19,6 +19,8 @@ const GameCard = (props) => {
     const setGameState = props.setGameState;
     const cardFlipCounts = props.cardFlipCounts;
     const setCardFlipCounts = props.setCardFlipCounts;
+    const extraCardFlipCounts = props.extraCardFlipCounts;
+    const setExtraCardFlipCounts = props.setExtraCardFlipCounts;
     const gameScore = props.gameScore;
     const setGameScore = props.setGameScore;
     const timerId = props.timerId;
@@ -35,6 +37,7 @@ const GameCard = (props) => {
     const onClick = (event) => {
         event.stopPropagation();
         if (!faceUp) {
+            // The card is not face up so we are flipping it face up
             if (gameState === 'Not Started') {
                 setUpCards();
                 let newActiveCards = activeCards ? [...activeCards, cardIndex] : [cardIndex];
@@ -59,77 +62,109 @@ const GameCard = (props) => {
                 setGameState('In-Progress');
             } else {
                 if (!activeCards || activeCards.length < 1) {
-                    let newCardsFaceUp = null;
-                    if (!cardsFaceUp) {
-                        newCardsFaceUp = new Array(size * size).fill(null);
-                    } else {
-                        newCardsFaceUp = [...cardsFaceUp];
-                    }
+                    // There are no active cards
+                    //     This happens at the start of a new game or if the
+                    //     most recent two cards that were selected matched.
+                    //
+                    //     In the case of a new game, there are not yet any active
+                    //     cards. If the most recent two selected cards matched,
+                    //     then the array of active cards is set to empty.
+
+                    // Set the card to face up:
+                    const newCardsFaceUp = cardsFaceUp ? [...cardsFaceUp] : new Array(size * size).fill(null);
                     newCardsFaceUp[cardIndex] = true;
-                    let newCardFlipCounts = null;
-                    if (!cardFlipCounts) {
-                        newCardFlipCounts = new Array(size * size).fill(0);
-                    } else {
-                        newCardFlipCounts = [...cardFlipCounts];
+
+                    // Increment the card flip count for the card:
+                    const newCardFlipCount = cardFlipCounts ? cardFlipCounts[cardIndex] + 1 : 1;
+                    const newCardFlipCounts = cardFlipCounts ? [...cardFlipCounts] : new Array(size * size).fill(0);
+                    newCardFlipCounts[cardIndex] = newCardFlipCount;
+
+                    if (newCardFlipCount > 1) {
+                        // A card need only be flipped once to reveal what is on
+                        // it and a second time to match it.
+                        //
+                        // This card was already flipped once. This flip did mot
+                        // match it (since there was no active card in the set
+                        // of active cards), so this was an extra card flip.
+                        // increment the set of extra card flips.
+                        setExtraCardFlipCounts(extraCardFlipCounts + 1);
                     }
-                    newCardFlipCounts[cardIndex] += 1;
-                    setActiveCards( [ cardIndex ] );
+
+                    // Put the card into the set of active cards:
+                    const newActiveCards = [ cardIndex ];
+
+                    setActiveCards(newActiveCards );
                     setCardsFaceUp(newCardsFaceUp);
                     setCardFlipCounts(newCardFlipCounts);
                 } else if (activeCards.length > 1) {
-                    let newCardsFaceUp = null;
-                    if (!cardsFaceUp) {
-                        newCardsFaceUp = new Array(size * size).fill(null);
-                    } else {
-                        newCardsFaceUp = [...cardsFaceUp];
-                    }
+                    // There may be 0 active cards which happens when the game
+                    // is new, the set of active cards is flipped back over, or
+                    // after the most recent two selected cards are matched.
+                    //
+                    // There may be 1 active card which happens when the set of
+                    // active cards has no cards in it and another card is clicked on.
+                    // When there is one active card, we check to see if the most
+                    // recently selected card matches that card.
+                    //
+                    // In this case, however, there are two active cards. This
+                    // happens when the most recently selected two cards do not match
+                    // and a third card is selected.
+
+                    // Flip the active cards face down and the new card identified
+                    // by cardIndex to face up.
+                    const newCardsFaceUp = cardsFaceUp ? [...cardsFaceUp] : new Array(size * size).fill(null);
                     for (let activeCardIndex of activeCards) {
                         newCardsFaceUp[activeCardIndex] = false;
                     }
                     newCardsFaceUp[cardIndex] = true;
-                    let newActiveCards = [cardIndex];
-                    let newCardFlipCounts = null;
-                    if (!cardFlipCounts) {
-                        newCardFlipCounts = new Array(size * size).fill(0);
-                    } else {
-                        newCardFlipCounts = [...cardFlipCounts];
-                    }
-                    newCardFlipCounts[cardIndex] += 1;
+
+                    // Increment the card flip count for the card:
+                    const newCardFlipCount = cardFlipCounts ? cardFlipCounts[cardIndex] + 1 : 1;
+                    const newCardFlipCounts = cardFlipCounts ? [...cardFlipCounts] : new Array(size * size).fill(0);
+                    newCardFlipCounts[cardIndex] = newCardFlipCount;
+
+                    // Set the array of active cards to contain the new card:
+                    const newActiveCards = [cardIndex];
+
                     setActiveCards(newActiveCards);
                     setCardsFaceUp(newCardsFaceUp);
                     setCardFlipCounts(newCardFlipCounts);
                 } else {
+                    // There is one active card and we are flipping over a second card.
+                    // Do the cards match?
                     let activeCardIndex = activeCards[0];
                     let activeCardImageId = imageIdsForCards[activeCardIndex];
                     if (activeCardImageId === imageId) {
-                        let newActiveCards = [];
-                        let newCardsFaceUp = null;
-                        if (!cardsFaceUp) {
-                            newCardsFaceUp = new Array(size * size).fill(null);
-                        } else {
-                            newCardsFaceUp = [...cardsFaceUp];
-                        }
-                        newCardsFaceUp[activeCardIndex] = true;
-                        newCardsFaceUp[cardIndex] = true;
-                        let newMatchedCards = null;
-                        if (matchedCards) {
-                            newMatchedCards = [...matchedCards];
-                        } else {
-                            newMatchedCards = new Array(size * size).fill(null);
-                        }
+                        // Cards match:
+                        const newMatchedCards = matchedCards ? [...matchedCards] : new Array(size * size).fill(null);
                         newMatchedCards[activeCardIndex] = imageId;
                         newMatchedCards[cardIndex] = imageId;
-                        let newCardFlipCounts = null;
-                        if (!cardFlipCounts) {
-                            newCardFlipCounts = new Array(size * size).fill(0);
-                        } else {
-                            newCardFlipCounts = [...cardFlipCounts];
-                        }
+
+                        // Set the card to face up:
+                        const newCardsFaceUp = cardsFaceUp ? [...cardsFaceUp] : new Array(size * size).fill(null);
+                        newCardsFaceUp[cardIndex] = true;
+
+                        // Increment the card flip count for this card:
+                        const newCardFlipCounts = cardFlipCounts ? [...cardFlipCounts] :  new Array(size * size).fill(0);
                         newCardFlipCounts[cardIndex] += 1;
+
+                        // Calculate the score to include this match:
                         const activeCardFlipCounts = newCardFlipCounts[activeCardIndex];
                         const thisCardFlipCounts = newCardFlipCounts[cardIndex];
                         const matchPoints = pointsForMatch(size, activeCardFlipCounts, thisCardFlipCounts);
                         const newScore = ( gameScore || 0 ) + matchPoints;
+
+                        // A card needs to be flipped at most twice, once to
+                        // reveal and once to match. When there were no active
+                        // cards, we did not know if the previous flip was extra
+                        // or not. Now there are two (matching) face up cards so
+                        // we can determine if the previous flip was extra or
+                        // not. We can also determine if this flip was extra or
+                        // not.
+                        let extraFlipsToTrack = activeCardFlipCounts > 2 ? 1 : 0;
+                        extraFlipsToTrack += thisCardFlipCounts > 2 ? 1 : 0;
+                        const newExtraCardFlipCounts = extraCardFlipCounts + extraFlipsToTrack;
+
                         let gameCompleted = true;
                         for (let cardImageId of newMatchedCards) {
                             if (!cardImageId) {
@@ -137,11 +172,16 @@ const GameCard = (props) => {
                                 break;
                             }
                         }
-                        setActiveCards(newActiveCards);
-                        setCardsFaceUp(newCardsFaceUp);
+
+                        // Set the array of active cards to an empty array:
+                        const newActiveCards = [];
+
                         setMatchedCards(newMatchedCards);
+                        setCardsFaceUp(newCardsFaceUp);
                         setCardFlipCounts(newCardFlipCounts);
+                        setExtraCardFlipCounts(newExtraCardFlipCounts);
                         setGameScore(newScore);
+                        setActiveCards(newActiveCards);
                         if (gameCompleted) {
                             if (timerId) {
                                 clearInterval(timerId);
@@ -150,29 +190,37 @@ const GameCard = (props) => {
                             setGameState('Completed');
                         }
                     } else {
-                        let newActiveCards = [activeCardIndex, cardIndex];
-                        let newCardsFaceUp = null;
-                        if (!cardsFaceUp) {
-                            newCardsFaceUp = new Array(size * size).fill(null);
-                        } else {
-                            newCardsFaceUp = [...cardsFaceUp];
-                        }
+                        // The cards do not match
+                        const newActiveCards = [activeCardIndex, cardIndex];
+                        const newCardsFaceUp = cardsFaceUp ? [...cardsFaceUp] : new Array(size * size).fill(null);
                         newCardsFaceUp[activeCardIndex] = true;
                         newCardsFaceUp[cardIndex] = true;
-                        let newCardFlipCounts = null;
-                        if (!cardFlipCounts) {
-                            newCardFlipCounts = new Array(size * size).fill(0);
-                        } else {
-                            newCardFlipCounts = [...cardFlipCounts];
-                        }
+                        const newCardFlipCounts = cardFlipCounts ? [...cardFlipCounts] : new Array(size * size).fill(0);
                         newCardFlipCounts[cardIndex] += 1;
+
+                        const activeCardFlipCounts = newCardFlipCounts[activeCardIndex];
+                        const thisCardFlipCounts = newCardFlipCounts[cardIndex];
+
+                        // A card needs to be flipped at most twice, once to
+                        // reveal and once to match. When there were no active
+                        // cards, we did not know if the previous flip was extra
+                        // or not. Now there are two (matching) face up cards so
+                        // we can determine if the previous flip was extra or
+                        // not. We can also determine if this flip was extra or
+                        // not.
+                        let extraFlipsToTrack = activeCardFlipCounts > 2 ? 1 : 0;
+                        extraFlipsToTrack += thisCardFlipCounts > 2 ? 1 : 0;
+                        const newExtraCardFlipCounts = extraCardFlipCounts + extraFlipsToTrack;
+
                         setActiveCards(newActiveCards);
                         setCardsFaceUp(newCardsFaceUp);
                         setCardFlipCounts(newCardFlipCounts);
+                        setExtraCardFlipCounts(newExtraCardFlipCounts);
                     }
                 }
             }
         } else {
+            // The card is face up so we are enlarging the view of the card:
             if (imageId) {
                 setIdOfLargeImageToView(imageId);
             }
@@ -210,6 +258,8 @@ const GameRow = (props) => {
     const gameState = props.gameState;
     const setGameState = props.setGameState;
     const cardFlipCounts = props.cardFlipCounts;
+    const extraCardFlipCounts = props.extraCardFlipCounts;
+    const setExtraCardFlipCounts = props.setExtraCardFlipCounts;
     const setCardFlipCounts = props.setCardFlipCounts;
     const gameScore = props.gameScore;
     const setGameScore = props.setGameScore;
@@ -233,6 +283,8 @@ const GameRow = (props) => {
                              setMatchedCards={setMatchedCards}
                              cardFlipCounts={cardFlipCounts}
                              setCardFlipCounts={setCardFlipCounts}
+                             extraCardFlipCounts={extraCardFlipCounts}
+                             setExtraCardFlipCounts={setExtraCardFlipCounts}
                              gameScore={gameScore}
                              setGameScore={setGameScore}
                              activeCards={activeCards}
@@ -272,6 +324,8 @@ const Game = (props) => {
     const setMatchedCards = props.setMatchedCards;
     const cardFlipCounts = props.cardFlipCounts;
     const setCardFlipCounts = props.setCardFlipCounts;
+    const extraCardFlipCounts = props.extraCardFlipCounts;
+    const setExtraCardFlipCounts = props.setExtraCardFlipCounts;
     const gameScore = props.gameScore;
     const setGameScore = props.setGameScore;
     const timerId = props.timerId;
@@ -299,6 +353,8 @@ const Game = (props) => {
                       setMatchedCards={setMatchedCards}
                       cardFlipCounts={cardFlipCounts}
                       setCardFlipCounts={setCardFlipCounts}
+                      extraCardFlipCounts={extraCardFlipCounts}
+                      setExtraCardFlipCounts={setExtraCardFlipCounts}
                       gameScore={gameScore}
                       setGameScore={setGameScore}
                       activeCards={activeCards}
