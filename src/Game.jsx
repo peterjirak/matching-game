@@ -33,7 +33,8 @@ const GameCard = (props) => {
     collectionId = collectionId.toLowerCase();
     collectionId = collectionId.replace(/ /g, '-');
 
-    const onClick = () => {
+    const onClick = (event) => {
+        event.stopPropagation();
         if (!faceUp) {
             if (gameState === 'Not Started') {
                 setUpCards();
@@ -312,8 +313,21 @@ const Game = (props) => {
         rows.push(row)
     }
 
+    // Kelly wants an onClick event handler so that if the face up cards do not match, clicking anywhere on the
+    // board turns them back face down.
+    const flipBackOver = () => {
+        if (activeCards && activeCards.length >= 2) {
+            const newCardsFaceUp = cardsFaceUp ? [...cardsFaceUp] : new Array(size * size).fill(null);
+            for (const cardIndex of activeCards) {
+                newCardsFaceUp[cardIndex] = false;
+            }
+            setCardsFaceUp(newCardsFaceUp);
+            setActiveCards([]);
+        }
+    }
+
     return (
-        <div key='game-board' id='game-board' className="game-board">
+        <div key='game-board' id='game-board' className="game-board" onClick={flipBackOver}>
             {rows}
         </div>
     );
