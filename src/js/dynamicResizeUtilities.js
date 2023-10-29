@@ -3,8 +3,8 @@
 const dynamicallySizeLargeImageViewer = () => {
     const largeImageViewerElement = document.getElementById('large-image');
     if (largeImageViewerElement) {
-        const viewportHeight = window.innerHeight;
-        const viewportWidth = window.innerWidth;
+        const viewportHeight = document.documentElement.clientHeight;
+        const viewportWidth = document.documentElement.clientWidth;
         const largeImageDimension = viewportHeight < viewportWidth ? viewportHeight / 2 : viewportWidth / 2;
         largeImageViewerElement.style.width = `${largeImageDimension}px`;
         largeImageViewerElement.style.height = `${largeImageDimension}px`;
@@ -39,8 +39,8 @@ const dynamicallySizeGameElements = () => {
                             'calculation produced the value ${size}. ` +
                             'That value is not 4, 6, 8, 10, nor 12.');
         }
-        const viewportHeight = window.innerHeight;
-        const viewportWidth = window.innerWidth;
+        const viewportHeight = document.documentElement.clientHeight;
+        const viewportWidth = document.documentElement.clientWidth;
         const aboveGameElement = document.getElementById('above-game');
         const aboveGameElementHeight = aboveGameElement.offsetHeight;
 
