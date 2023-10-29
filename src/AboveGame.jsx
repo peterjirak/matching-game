@@ -193,7 +193,7 @@ const PercentageCompleted = (props) => {
             </div>
             <p key='percentage-completed-label-text'
                className='percentage-completed-label-text'>
-                Percent Completed
+                Completed
             </p>
         </div>
     );
