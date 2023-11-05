@@ -214,12 +214,15 @@ const ConfigureSize = (props) => {
         >
             <div key='game-configuration-container'
                  className='game-configuration-container'
-            >
-                <p key='choose-board-size-text'
-                   className='choose-configuration-attribute-prompt font-size-42px'
+            >   <div key='choose-size-label-container'
+                     className='choose-size-label-container'
                 >
-                    Choose Size
-                </p>
+                    <p key='choose-board-size-text'
+                    className='choose-configuration-attribute-prompt font-size-42px'
+                    >
+                        Choose Size
+                    </p>
+                </div>
                 <div key='configure-size-selector-container'
                      className='configure-attribute-selector-container'
                 >
@@ -234,11 +237,13 @@ const ConfigureSize = (props) => {
                 <div key='configure-game-settings-container'
                      className='sample-card'
                 >
-                    <p key='display-timer-title'
-                       className='choose-configuration-attribute-prompt font-size-28px'
-                    >
-                        {timerDisplayed ? 'Timer Displayed' : 'No Timer'}
-                    </p>
+                    <div key='display-timer-title-container'>
+                        <p key='display-timer-title'
+                        className='choose-configuration-attribute-prompt font-size-28px padding-bottom-10px'
+                        >
+                            {timerDisplayed ? 'Timer Displayed' : 'No Timer'}
+                        </p>
+                    </div>
                     <button key='toggle-display-timer-button'
                             type='button'
                             className='toggle-button'
