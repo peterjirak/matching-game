@@ -1,5 +1,6 @@
-body {
-    margin: 0;
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
 }
 
 .one-hundred-view-width {
@@ -51,8 +52,6 @@ body {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  width: 100vw;
-  height: 100%;
 }
 
 .display-play-game-popup-container-choose-collection {
@@ -60,8 +59,6 @@ body {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  width: 100vw;
-  height: 100%;
 }
 
 .game-configuration-container {
@@ -163,12 +160,6 @@ body {
   text-align: center;
   vertical-align: middle;
   margin: 0;
-}
-
-.configure-options-spacer {
-  display: flex;
-  width: 100%;
-  height: 10px;
 }
 
 .sample-card {

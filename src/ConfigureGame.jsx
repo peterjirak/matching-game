@@ -6,7 +6,7 @@ const DisplayPlayGamePopup = (props) => {
     return (
         <div key='game-configuration-body'
              id='game-configuration-body'
-             className='display-play-game-popup-container one-hundred-view-width'
+             className='display-play-game-popup-container one-hundred-view-width one-hundred-view-height'
         >
              <p key='play-game-title'
                 className="play-game-title"
@@ -69,7 +69,7 @@ const ConfigureCollection = (props) => {
     return (
         <div key='game-configuration-body'
              id='game-configuration-body'
-             className='display-play-game-popup-container-choose-collection one-hundred-view-width'
+             className='display-play-game-popup-container-choose-collection one-hundred-view-width one-hundred-view-height'
         >
             <div key='game-configuration-container'
                  className='game-configuration-container'
@@ -201,7 +201,7 @@ const ConfigureSize = (props) => {
     return (
         <div key='game-configuration-body'
              id='game-configuration-body'
-             className='display-play-game-popup-container-choose-collection one-hundred-view-width'
+             className='display-play-game-popup-container-choose-collection one-hundred-view-width one-hundred-view-height'
         >
             <div key='game-configuration-container'
                  className='game-configuration-container'
