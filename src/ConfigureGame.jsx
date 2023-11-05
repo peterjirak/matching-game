@@ -8,11 +8,13 @@ const DisplayPlayGamePopup = (props) => {
              id='game-configuration-body'
              className='display-play-game-popup-container one-hundred-view-width one-hundred-view-height'
         >
-             <p key='play-game-title'
+            <div className='above-game'>
+                <p key='play-game-title'
                 className="play-game-title"
-            >
-                The Match Game
-            </p>
+                >
+                    The Match Game
+                </p>
+            </div>
              <button key='play-game-button'
                      type='button'
                      className='play-game-button-text pale-azure-color'
@@ -74,11 +76,13 @@ const ConfigureCollection = (props) => {
             <div key='game-configuration-container'
                  className='game-configuration-container'
             >
-                <p key='choose-configuration-attribute-prompt'
-                   className='choose-configuration-attribute-prompt font-size-42px'
-                >
-                    Choose Collection
-                </p>
+                <div className='game-configuration-prompt-container'>
+                    <p key='choose-configuration-attribute-prompt'
+                    className='choose-configuration-attribute-prompt font-size-42px'
+                    >
+                        Choose Collection
+                    </p>
+                </div>
                 <div key='configure-attribute-selector-container'
                      className='configure-attribute-selector-container'
                 >
