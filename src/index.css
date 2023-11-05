@@ -11,6 +11,10 @@
   height: 100vh;
 }
 
+.padding-top-20px {
+  padding-top: 20px;
+}
+
 .app-container {
   position: absolute;
   left: 0px;

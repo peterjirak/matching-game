@@ -119,22 +119,27 @@ const ConfigureCollection = (props) => {
                      src={cardImgSrc}
                 >
                 </img>
-                <button key='configure-attribute-selector-button-right'
-                        type='button'
-                        className='prev-next-button pale-azure-color'
-                        onClick={setToSelectSize}
+                <div
+                    key='next-button-container'
+                    className='padding-top-20px'
                 >
-                     <p key='next-button-text'
-                        className='margin-left-20px prev-prev-next-button-text'
+                    <button key='configure-attribute-selector-button-right'
+                            type='button'
+                            className='prev-next-button pale-azure-color'
+                            onClick={setToSelectSize}
                     >
-                        Next
-                    </p>
-                    <img key='next-button-chevron-right-img'
-                         className='prev-next-button-chevron-right-img'
-                         src='/src/images/application-controls/chevron-right-white.svg'
-                    >
-                    </img>
-                </button>
+                        <p key='next-button-text'
+                            className='margin-left-20px prev-prev-next-button-text'
+                        >
+                            Next
+                        </p>
+                        <img key='next-button-chevron-right-img'
+                            className='prev-next-button-chevron-right-img'
+                            src='/src/images/application-controls/chevron-right-white.svg'
+                        >
+                        </img>
+                    </button>
+                </div>
             </div>
         </div>
     );
