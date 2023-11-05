@@ -12,6 +12,8 @@ const dynamicallySizeLargeImageViewer = () => {
 }
 
 const dynamicallySizeGameElements = () => {
+    const viewportHeight = document.documentElement.clientHeight;
+    const viewportWidth = document.documentElement.clientWidth;
     const gameBoardElement = document.getElementById('game-board');
     if (gameBoardElement) {
         const childCount = gameBoardElement.children.length;
@@ -39,8 +41,6 @@ const dynamicallySizeGameElements = () => {
                             'calculation produced the value ${size}. ` +
                             'That value is not 4, 6, 8, 10, nor 12.');
         }
-        const viewportHeight = document.documentElement.clientHeight;
-        const viewportWidth = document.documentElement.clientWidth;
         const aboveGameElement = document.getElementById('above-game');
         const aboveGameElementHeight = aboveGameElement.offsetHeight;
 
@@ -57,6 +57,47 @@ const dynamicallySizeGameElements = () => {
             cardElement.style.width = `${cardDimension}px`;
             cardElement.style.height = `${cardDimension}px`;
         }
+        const gameBoardWidth = gameBoardElement.offsetWidth;
+        const scoreElements = document.getElementById('score-elements-collection');
+        if (scoreElements) {
+            const scoreElementsHeight = scoreElements.offsetHeight;
+            const scoreElementCount = scoreElements.children.length;
+            const maxScoreFieldWidth = 112;
+            const minScoreFieldMargin = 10;
+            const maxScoreFieldMargin = 40;
+            let scoreFieldWidth = null;
+            let scoreFieldMargin = null;
+            if (gameBoardWidth >= maxScoreFieldWidth * scoreElementCount + minScoreFieldMargin * (scoreElementCount + 1)) {
+                scoreFieldWidth = maxScoreFieldWidth;
+                scoreFieldMargin = ( gameBoardWidth - ( scoreFieldWidth * scoreElementCount ) ) / (scoreElementCount + 1);
+                if (scoreFieldMargin > maxScoreFieldMargin) {
+                    scoreFieldMargin = maxScoreFieldMargin;
+                }
+            } else {
+                scoreFieldWidth = ( gameBoardWidth - (minScoreFieldMargin * (scoreElementCount + 1))  ) / scoreElementCount;
+                scoreFieldMargin = minScoreFieldMargin;
+            }
+            for (let i = 0; i < scoreElementCount; i += 1) {
+                const scoreElement = scoreElements.children[i];
+                scoreElement.style.width = `${scoreFieldWidth}px`;
+                scoreElement.style.height = `${scoreElementsHeight}px`;
+                scoreElement.style.marginLeft = `${scoreFieldMargin}px`;
+                if (i === scoreElementCount - 1) {
+                    scoreElement.style.marginRight = `${scoreFieldMargin}px`;
+                }
+                if (scoreElement.children) {
+                    scoreElement.children[0].style.width = `${scoreFieldWidth}px`;
+                }
+            }
+        }
+    }
+    const oneHundredViewWidthElements = document.querySelectorAll('.one-hundred-view-width');
+    for (const element of oneHundredViewWidthElements) {
+        element.style.width = `${viewportWidth}px`;
+    }
+    const oneHundredViewHeightElements = document.querySelectorAll('.one-hundred-view-height');
+    for (const element of oneHundredViewHeightElements) {
+        element.style.height = `${viewportHeight}px`;
     }
 }
 

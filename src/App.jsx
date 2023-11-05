@@ -162,7 +162,7 @@ const App = () => {
     return (
         <div key='app-container'
              id="app-container"
-             className="app-container">
+             className="app-container one-hundred-view-width one-hundred-view-height">
             {configureGameElement}
             <LargeImageViewer
                 imageId={viewLargeImageId}

@@ -14,7 +14,7 @@ const AboveGameNotStarted = (props) => {
     return (
         <div key='above-game'
              id='above-game'
-             className="above-game"
+             className="above-game one-hundred-view-width"
         >
             <div key='above-game-left'
                  id='above-game-left'
@@ -38,6 +38,8 @@ const AboveGameNotStarted = (props) => {
     );
 }
 
+
+
 const ElapsedTime = (props) => {
     let elapsedMilliseconds = props.elapsedMilliseconds;
     let elapsedSeconds = Math.floor(elapsedMilliseconds / 1000);
@@ -53,20 +55,28 @@ const ElapsedTime = (props) => {
     }
 
     return (
-        <div key='elapsed-time-attribute-with-label'
+        <div id='elapsed-time-attribute-with-label'
+             key='elapsed-time-attribute-with-label'
              className='elapsed-time-attribute-with-label'
         >
-            <div key='elapsed-time-attribute-container'
+            <div id='elapsed-time-attribute-container'
+                 key='elapsed-time-attribute-container'
                  className='elapsed-time-attribute-container'>
-                <p key='elapsed-time-completed-text'
+                <p id='elapsed-time-completed-text'
+                   key='elapsed-time-completed-text'
                    className='elapsed-time-completed-text'>
                     {elapsedMinutes}:{elapsedSeconds}
                 </p>
             </div>
-            <p key='elapsed-time-completed-label-text'
-               className='elapsed-time-completed-label-text'>
-                Elapsed Time
-            </p>
+            <div id='elapsed-time-completed-label-text-container'
+                 className='elapsed-time-completed-label-text-container'
+                 key='elapsed-time-completed-label-text-container'>
+                <p id='elapsed-time-completed-label-text'
+                key='elapsed-time-completed-label-text'
+                className='elapsed-time-completed-label-text'>
+                    Time
+                </p>
+            </div>
         </div>
     );
 }
@@ -75,22 +85,30 @@ const GameScore = (props) => {
     const gameScore = props.gameScore;
 
     return (
-        <div key='score-attribute-with-label'
+        <div id='score-attribute-with-label'
+             key='score-attribute-with-label'
              className='score-attribute-with-label'
         >
-            <div key='score-attribute-container'
+            <div id='score-attribute-container'
+                 key='score-attribute-container'
                  className='score-attribute-container'
             >
-                <p key='score-completed-text'
+                <p id='score-completed-text'
+                   key='score-completed-text'
                    className='score-completed-text'
                 >
                     {gameScore}
                 </p>
             </div>
-            <p key='score-completed-label-text'
-               className='score-completed-label-text'>
-                Score
-            </p>
+            <div id='score-label-text-container'
+                 className='score-label-text-container'
+                 key='score-label-text-container'>
+                <p id='score-completed-label-text'
+                key='score-completed-label-text'
+                className='score-completed-label-text'>
+                    Score
+                </p>
+            </div>
         </div>
     );
 }
@@ -121,11 +139,16 @@ const FlipCount = (props) => {
                     {flipCount}
                 </p>
             </div>
-            <p key='flip-count-completed-label-text'
-               className='flip-count-completed-label-text'
+            <div key='flips-completed-label-container'
+                 id='flips-completed-label-container'
+                 className='flip-count-label-container'
             >
-                Flips
-            </p>
+                <p key='flip-count-completed-label-text'
+                className='flip-count-completed-label-text'
+                >
+                    Flips
+                </p>
+            </div>
         </div>
     );
 }
@@ -157,11 +180,16 @@ const ExtraFlipCount = (props) => {
                     {extraFlipCount}
                 </p>
             </div>
-            <p key='extra-flip-count-completed-label-text'
-               className='flip-count-completed-label-text'
+            <div key='extra-flips-completed-label-container'
+                 id='extra-flips-completed-label-container'
+                 className='flip-count-label-container'
             >
-                Extra Flips
-            </p>
+                <p key='extra-flip-count-completed-label-text'
+                   className='flip-count-completed-label-text'
+                >
+                    Extra Flips
+                </p>
+            </div>
         </div>
     );
 }
@@ -180,7 +208,8 @@ const PercentageCompleted = (props) => {
     }
 
     return (
-        <div key='percent-completed-attribute-with-label'
+        <div id='percent-completed-attribute-with-label'
+             key='percent-completed-attribute-with-label'
              className='percent-completed-attribute-with-label'
         >
             <div key='percent-attribute-container'
@@ -191,10 +220,14 @@ const PercentageCompleted = (props) => {
                     {percentCompleted} %
                 </p>
             </div>
-            <p key='percentage-completed-label-text'
-               className='percentage-completed-label-text'>
-                Completed
-            </p>
+            <div id='percentage-completed-label-container'
+                 key='percentage-completed-label-container'
+                 className='percentage-completed-label-container'>
+                <p key='percentage-completed-label-text'
+                className='percentage-completed-label-text'>
+                    Completed
+                </p>
+            </div>
         </div>
     );
 }
@@ -234,7 +267,10 @@ const AboveGameInProgress = (props) => {
 
     return (
         <div key='above-game' id='above-game' className="above-game">
-            {scoreItems}
+            
+            <div key='score-elements' id='score-elements-collection' className='score-elements-collection'>
+                {scoreItems}
+            </div>
         </div>
     );
 }

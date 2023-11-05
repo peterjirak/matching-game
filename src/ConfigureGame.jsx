@@ -6,7 +6,7 @@ const DisplayPlayGamePopup = (props) => {
     return (
         <div key='game-configuration-body'
              id='game-configuration-body'
-             className='display-play-game-popup-container'
+             className='display-play-game-popup-container one-hundred-view-width'
         >
              <p key='play-game-title'
                 className="play-game-title"
@@ -69,7 +69,7 @@ const ConfigureCollection = (props) => {
     return (
         <div key='game-configuration-body'
              id='game-configuration-body'
-             className='display-play-game-popup-container-choose-collection'
+             className='display-play-game-popup-container-choose-collection one-hundred-view-width'
         >
             <div key='game-configuration-container'
                  className='game-configuration-container'
@@ -201,7 +201,7 @@ const ConfigureSize = (props) => {
     return (
         <div key='game-configuration-body'
              id='game-configuration-body'
-             className='display-play-game-popup-container-choose-collection'
+             className='display-play-game-popup-container-choose-collection one-hundred-view-width'
         >
             <div key='game-configuration-container'
                  className='game-configuration-container'
@@ -358,7 +358,7 @@ const ConfigureGame = (props) => {
     const timerDisplayed = props.timerDisplayed;
     const setTimerDisplayed = props.setTimerDisplayed;
 
-    const className = gameState === 'Not Started' ? 'configure-game-container' : 'configure-game-container-choose-collection';
+    const className = gameState === 'Not Started' ? 'configure-game-container one-hundred-view-height' : 'configure-game-container-choose-collection one-hundred-view-height';
 
     return (
         <div className={className}>
