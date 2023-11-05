@@ -12,8 +12,6 @@ const dynamicallySizeLargeImageViewer = () => {
 }
 
 const dynamicallySizeGameElements = () => {
-    const viewportHeight = document.documentElement.clientHeight;
-    const viewportWidth = document.documentElement.clientWidth;
     const gameBoardElement = document.getElementById('game-board');
     if (gameBoardElement) {
         const childCount = gameBoardElement.children.length;
@@ -44,6 +42,9 @@ const dynamicallySizeGameElements = () => {
         const aboveGameElement = document.getElementById('above-game');
         const aboveGameElementHeight = aboveGameElement.offsetHeight;
 
+        const viewportHeight = document.documentElement.clientHeight;
+        const viewportWidth = document.documentElement.clientWidth;
+    
         gameBoardElement.style.height = `${Math.floor(viewportHeight - aboveGameElementHeight)}px`;
         const rowHeight = Math.floor((viewportHeight - aboveGameElementHeight)/size) - 25;
         const cellWidth = Math.floor(viewportWidth/size) - 25;
@@ -90,14 +91,6 @@ const dynamicallySizeGameElements = () => {
                 }
             }
         }
-    }
-    const oneHundredViewWidthElements = document.querySelectorAll('.one-hundred-view-width');
-    for (const element of oneHundredViewWidthElements) {
-        element.style.width = `${viewportWidth}px`;
-    }
-    const oneHundredViewHeightElements = document.querySelectorAll('.one-hundred-view-height');
-    for (const element of oneHundredViewHeightElements) {
-        element.style.height = `${viewportHeight}px`;
     }
 }
 
