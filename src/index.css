@@ -12,13 +12,13 @@
 }
 
 .app-container {
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    background-color: #D1FFD5;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background-color: #D1FFD5;
 }
 
 .configure-game-container {
