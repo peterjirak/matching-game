@@ -5,7 +5,9 @@ const dynamicallySizeLargeImageViewer = () => {
     if (largeImageViewerElement) {
         const viewportHeight = document.documentElement.clientHeight;
         const viewportWidth = document.documentElement.clientWidth;
-        const largeImageDimension = viewportHeight < viewportWidth ? viewportHeight / 2 : viewportWidth / 2;
+        let largeImageDimension = viewportHeight < viewportWidth ? viewportHeight : viewportWidth;
+        largeImageDimension = largeImageDimension >= 500 ? largeImageDimension * 0.5 : largeImageDimension * 0.85;
+
         largeImageViewerElement.style.width = `${largeImageDimension}px`;
         largeImageViewerElement.style.height = `${largeImageDimension}px`;
     }
